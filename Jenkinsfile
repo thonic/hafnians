@@ -5,6 +5,7 @@ pipeline {
             steps {
                 sh '''
                     pwd
+                    whoami
                     conda env list
                 '''
             }
