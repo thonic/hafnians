@@ -6,7 +6,7 @@ pipeline {
                 sh '''
                     pwd
                     whoami
-                    conda env list
+                    /home/thonic/anaconda3/envs/partial-derivatives/bin/python /home/thonic/git/partial-derivatives/hafnian.py
                 '''
             }
         }
