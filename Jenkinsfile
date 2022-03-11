@@ -9,10 +9,14 @@ pipeline {
             }
             steps {
                 sh '''
-                    pwd;
+                    pwd
+                    git checkout master
                     m=$(git log -1 --pretty=%B | sed 's/RUN \\(.*\\)/\\1/')
                     echo $m
-                    # /home/thonic/anaconda3/envs/partial-derivatives/bin/python /home/thonic/git/partial-derivatives/hafnian.py
+                    /home/thonic/anaconda3/envs/partial-derivatives/bin/python /home/thonic/git/partial-derivatives/hafnian.py --job_name="$m"
+                    git add *
+                    git commit -m "save results"
+                    git push
                 '''
             }
         }
