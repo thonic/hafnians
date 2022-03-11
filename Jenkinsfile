@@ -1,15 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Run hafnian.py') {
+            when { allOf {
+                branch 'master';
+                }
+            }
             steps {
-                sh 'echo "I am working from"'
                 sh '''
                     pwd
-                '''
-                sh '''
-                    echo "Multiline shell steps works too"
-                    ls -lah
+                    whoami
+                    # /home/thonic/anaconda3/envs/partial-derivatives/bin/python /home/thonic/git/partial-derivatives/hafnian.py
                 '''
             }
         }
