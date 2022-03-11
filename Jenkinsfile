@@ -10,6 +10,8 @@ pipeline {
             steps {
                 sh '''
                     pwd;
+                    m=$(git log -1 --pretty=%B | sed 's/RUN \\(.*\\)/\\1/')
+                    echo $m
                     # /home/thonic/anaconda3/envs/partial-derivatives/bin/python /home/thonic/git/partial-derivatives/hafnian.py
                 '''
             }
