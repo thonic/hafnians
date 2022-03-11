@@ -1,49 +1,76 @@
-# 20x20 haffnian (look for loop haffnian)
 # inputs: covariance, displacement, which photons to measure
 
-#import argparse
+import argparse
+from datetime import datetime
+
 import numpy as np
+from thewalrus.quantum import Amat, Qmat, reduced_gaussian, density_matrix_element, density_matrix
 from thewalrus.samples import hafnian_sample_state
+from thewalrus import hafnian
 from time import time
+import logging
+from pathlib import Path
 
-# parser = argparse.ArgumentParser(description="Calculate samples from Hafnian of a Gaussian State")
-#
-# parser.add_argument(
-#     "--covariance_file",
-#     dest="covariance_file",
-#     type=str,
-#     help="Path to the CSV file with to input " "Covariance Matrix.",
-#     required=True,
-# )
-# parser.add_argument(
-#     "--mean_file", dest="mean_file", type=str, help="Path to the CSV file with the mean vector.", required=True
-# )
-# parser.add_argument(
-#     "--n_samples", dest="n_samples", type=int, help="How many samples should be generated.", required=True
-# )
-# args = parser.parse_args()
-#
-#
-# covariance_matrix = np.genfromtxt(args.covariance_file, delimiter=",")
-# mean = np.genfromtxt(args.mean_file, delimiter=",")
-# n_samples = args.n_samples
+logging.basicConfig(level=logging.DEBUG)
 
-n_photons = 10
-n_samples = 10
-covariance_matrix = np.identity(2 * n_photons, dtype=np.int64)
-np.savetxt("covariance_matrix.csv", covariance_matrix, delimiter=",")
-mean = np.array([1] * 2 * n_photons, dtype=np.float64)
-np.savetxt("mean.csv", mean, delimiter=",")
+parser = argparse.ArgumentParser(description="Calculate samples from Hafnian of a Gaussian State")
 
-generated_samples = hafnian_sample_state(
-    cov=covariance_matrix,
-    samples=n_samples,
-    mean=mean,
-    hbar=1,
-    cutoff=10,
-    max_photons=100,
-    approx=False,
-    parallel=True,
+parser.add_argument(
+    "--covariance_file",
+    dest="covariance_file",
+    type=str,
+    help="Path to the CSV file with the input Covariance Matrix.",
+    default="covariance_matrix.csv",
 )
 
-np.savetxt("samples.csv", generated_samples, delimiter=",")
+parser.add_argument(
+    "--mean_file", dest="mean_file", type=str, help="Path to the CSV file with the mean vector.", default="mean.csv"
+)
+
+parser.add_argument(
+    "--post_select_file",
+    dest="post_select_file",
+    type=str,
+    help="Path to the CSV file with the indices to consider",
+    default="post_select.csv",
+)
+parser.add_argument(
+    "--job_name",
+    dest="job_name",
+    type=str,
+    help="Part of the filename with the results.",
+    default="hafnian_calc",
+)
+args = parser.parse_args()
+
+
+covariance_matrix = np.genfromtxt(args.covariance_file, delimiter=",")
+mean = np.genfromtxt(args.mean_file, delimiter=",")
+post_select = np.genfromtxt(args.post_select_file, delimiter=",", dtype=int)
+
+job_name = args.job_name
+# check the inputs are valid
+assert (
+    covariance_matrix.shape[0] == covariance_matrix.shape[1]
+), f"Covariance matrix is not a square matrix (got {covariance_matrix.shape[0]}x{covariance_matrix.shape[1]})."
+assert (
+    covariance_matrix.shape[0] == mean.shape[0]
+), f"Covariance matrix and the mean vector dimensions do not match (got {covariance_matrix.shape[0]}x{covariance_matrix.shape[1]} and {mean.shape[0]})."
+assert (
+    post_select.shape[0] == mean.shape[0] / 2
+), f"Mean vector and post select dimensions do not match (got {mean.shape[0]} and {post_select.shape[0]})."
+
+dateTimeObj = datetime.now()
+output_fname = f"{dateTimeObj.strftime('%Y-%m-%d %H:%M:%S')} {job_name}.npy"
+output_fname = output_fname.replace(" ", "_")
+logging.info(f"Result will be saved to {output_fname}.")
+
+post_select = {k: v for k, v in enumerate(post_select) if v == 0}
+
+dm = density_matrix(mean, covariance_matrix, post_select, hbar=1, normalize=True)
+
+output_path = Path("results")
+output_path.mkdir(parents=True, exist_ok=True)
+output_path = output_path / output_fname
+
+np.save(output_path, dm, allow_pickle=False)
