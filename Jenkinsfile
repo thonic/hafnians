@@ -4,12 +4,12 @@ pipeline {
         stage('Run hafnian.py') {
             when { allOf {
                 branch 'master';
+                changelog '^RUN .*'
                 }
             }
             steps {
                 sh '''
-                    pwd
-                    whoami
+                    pwd;
                     # /home/thonic/anaconda3/envs/partial-derivatives/bin/python /home/thonic/git/partial-derivatives/hafnian.py
                 '''
             }
