@@ -7,12 +7,13 @@ def state_generation():
     prog = sf.Program(2)
 
     with prog.context as q:
-        Squeezed(1, 0) | q[0]
-        Dgate(1) | q[0]
-        BSgate(0.01, 0) | (q[0], q[1])
+       # Squeezed(0, 0) | q[0]
+        S2gate(1,0)| (q[0], q[1])
+        #Dgate(1) | q[0]
+       # BSgate(0.01, 0) | (q[0], q[1])
         MeasureFock(select=1) | q[1]
-        Dgate(1) | q[0]
-        Sgate(1, np.pi) | q[0]
+        #Dgate(1) | q[0]
+       # Sgate(1, np.pi) | q[0]
 
     eng = sf.Engine("fock", backend_options={"cutoff_dim": 50})
     result = eng.run(prog)
