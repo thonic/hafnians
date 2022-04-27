@@ -11,6 +11,8 @@ from time import time
 import logging
 from pathlib import Path
 
+from blackbird.subtraction import state_generation
+
 logging.basicConfig(level=logging.DEBUG)
 
 parser = argparse.ArgumentParser(description="Calculate samples from Hafnian of a Gaussian State")
@@ -44,33 +46,50 @@ parser.add_argument(
 args = parser.parse_args()
 
 
-covariance_matrix = np.genfromtxt(args.covariance_file, delimiter=",")
-mean = np.genfromtxt(args.mean_file, delimiter=",")
-post_select = np.genfromtxt(args.post_select_file, delimiter=",", dtype=int)
-
 job_name = args.job_name
-# check the inputs are valid
-assert (
-    covariance_matrix.shape[0] == covariance_matrix.shape[1]
-), f"Covariance matrix is not a square matrix (got {covariance_matrix.shape[0]}x{covariance_matrix.shape[1]})."
-assert (
-    covariance_matrix.shape[0] == mean.shape[0]
-), f"Covariance matrix and the mean vector dimensions do not match (got {covariance_matrix.shape[0]}x{covariance_matrix.shape[1]} and {mean.shape[0]})."
-assert (
-    post_select.shape[0] == mean.shape[0] / 2
-), f"Mean vector and post select dimensions do not match (got {mean.shape[0]} and {post_select.shape[0]})."
-
 dateTimeObj = datetime.now()
-output_fname = f"{dateTimeObj.strftime('%Y-%m-%d %H:%M:%S')} {job_name}.npy"
+output_fname = f"{dateTimeObj.strftime('%Y-%m-%d %H.%M.%S')} {job_name}.txt"
 output_fname = output_fname.replace(" ", "_")
 logging.info(f"Result will be saved to {output_fname}.")
-
-post_select = {k: v for k, v in enumerate(post_select) if v == 0}
-
-dm = density_matrix(mean, covariance_matrix, post_select, hbar=1, normalize=True)
 
 output_path = Path("results")
 output_path.mkdir(parents=True, exist_ok=True)
 output_path = output_path / output_fname
 
-np.save(output_path, dm, allow_pickle=False)
+result = state_generation()
+
+headers = ["purity", "diagonal of the reduced density matrix"]
+for h, r in zip(headers, result):
+    np.savetxt(output_path, result[0], "%.5e", delimiter=', ', newline='\n', header=h, footer='')
+
+
+# covariance_matrix = np.genfromtxt(args.covariance_file, delimiter=",")
+# mean = np.genfromtxt(args.mean_file, delimiter=",")
+# post_select = np.genfromtxt(args.post_select_file, delimiter=",", dtype=int)
+#
+# job_name = args.job_name
+# # check the inputs are valid
+# assert (
+#     covariance_matrix.shape[0] == covariance_matrix.shape[1]
+# ), f"Covariance matrix is not a square matrix (got {covariance_matrix.shape[0]}x{covariance_matrix.shape[1]})."
+# assert (
+#     covariance_matrix.shape[0] == mean.shape[0]
+# ), f"Covariance matrix and the mean vector dimensions do not match (got {covariance_matrix.shape[0]}x{covariance_matrix.shape[1]} and {mean.shape[0]})."
+# assert (
+#     post_select.shape[0] == mean.shape[0] / 2
+# ), f"Mean vector and post select dimensions do not match (got {mean.shape[0]} and {post_select.shape[0]})."
+#
+# dateTimeObj = datetime.now()
+# output_fname = f"{dateTimeObj.strftime('%Y-%m-%d %H.%M.%S')} {job_name}.npy"
+# output_fname = output_fname.replace(" ", "_")
+# logging.info(f"Result will be saved to {output_fname}.")
+#
+# post_select = {k: v for k, v in enumerate(post_select) if v == 0}
+#
+# dm = density_matrix(mean, covariance_matrix, post_select, hbar=1, normalize=True)
+#
+# output_path = Path("results")
+# output_path.mkdir(parents=True, exist_ok=True)
+# output_path = output_path / output_fname
+#
+# np.save(output_path, dm, allow_pickle=False)
