@@ -11,7 +11,7 @@ from time import time
 import logging
 from pathlib import Path
 
-from blackbird.subtraction import state_generation
+from blackbird_code.subtraction import state_generation
 
 logging.basicConfig(level=logging.DEBUG)
 
