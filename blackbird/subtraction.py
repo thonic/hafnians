@@ -12,7 +12,7 @@ def state_generation():
         BSgate(0.01, 0) | (q[0], q[1])
         MeasureFock(select=1) | q[1]
         Dgate(1) | q[0]
-        Squeezed(-1, 0) | q[0]
+        Squeezed(1, np.pi) | q[0]
 
     eng = sf.Engine("fock", backend_options={"cutoff_dim": 50})
     result = eng.run(prog)
