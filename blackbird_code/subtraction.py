@@ -17,7 +17,7 @@ def state_generation():
     eng = sf.Engine("fock", backend_options={"cutoff_dim": 50})
     result = eng.run(prog)
     state = result.state
-    return state.trace(), np.diagonal(state.reduced_dm([0]))[:4]
+    return state.trace(), np.diagonal(state.reduced_dm([0]))[:5]
 
     # # result:
     # 0.9999997939494688
