@@ -59,8 +59,9 @@ output_path = output_path / output_fname
 result = state_generation()
 
 headers = ["purity", "diagonal of the reduced density matrix"]
-for h, r in zip(headers, result):
-    np.savetxt(output_path, result[0], "%.5e", delimiter=', ', newline='\n', header=h, footer='')
+with open(output_path, 'a') as csvfile:
+    for h, r in zip(headers, result):
+        np.savetxt(csvfile, r, "%.5e", delimiter=', ', newline='\n', header=h, footer='')
 
 
 # covariance_matrix = np.genfromtxt(args.covariance_file, delimiter=",")
