@@ -1,2 +1,0 @@
-# diagonal of the reduced density matrix
-9.99998e-01
