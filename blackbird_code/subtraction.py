@@ -9,7 +9,7 @@ def state_generation():
     with prog.context as q:
         Squeezed(1, 0) | q[0]
        # S2gate(1,0)| (q[0], q[1])
-        # S2gate(1,0)| (q[0], q[1]
+        # S2gate(1.1,0)| (q[0], q[1]
         Dgate(1.4144,0) | q[0]
         BSgate(0.001, 0) | (q[0], q[1])
         MeasureFock(select=1) | q[1]
