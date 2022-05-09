@@ -4,7 +4,7 @@ from strawberryfields.ops import *
 
 
 def state_generation():
-    prog = sf.Program(2)
+    prog = sf.Program(3)
 
     with prog.context as q:
         Squeezed(1, 0) | q[0]
