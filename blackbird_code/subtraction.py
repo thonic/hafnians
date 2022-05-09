@@ -14,7 +14,7 @@ def state_generation():
         BSgate(0.001, 0) | (q[0], q[1])
       #  MeasureFock(select=1) | q[1]
         Dgate(1.4144,np.pi) | q[0]
-      #  BSgate(0.001, 0) | (q[0], q[2])
+        BSgate(0.001, 0) | (q[0], q[2])
        # MeasureFock(select=1) | q[2]
         Sgate(1, np.pi) | q[0])
        MeasureFock(select=1) | q[1]
