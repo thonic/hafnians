@@ -4,18 +4,21 @@ from strawberryfields.ops import *
 
 
 def state_generation():
-    prog = sf.Program(3)
+    prog = sf.Program(4)
 
     with prog.context as q:
         Squeezed(0.8814, 0) | q[0]
        # S2gate(1,0)| (q[0], q[1])
         # S2gate(1.1,0)| (q[0], q[1]
-        Dgate(1.4144,0) | q[0]
+        Dgate(2.4595,0) | q[0]
         BSgate(0.001, 0) | (q[0], q[1])
         MeasureFock(select=1) | q[1]
-        Dgate(1.4144,np.pi) | q[0]
+        Dgate(3.1901,np.pi) | q[0]
         BSgate(0.001, 0) | (q[0], q[2])
         MeasureFock(select=1) | q[2]
+        Dgate(0.7288, np.pi) | q[0]
+        BSgate(0.001, 0) | (q[0], q[3])
+        MeasureFock(select=1) | q[3]
         Sgate(0.8814, np.pi) | q[0]
         #MeasureFock(select=1) | q[1]
 
