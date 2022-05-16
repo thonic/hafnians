@@ -23,7 +23,7 @@ def state_generation():
         #MeasureFock(select=1) | q[1]
 
 
-    eng = sf.Engine("fock", backend_options={"cutoff_dim": 25})
+    eng = sf.Engine("fock", backend_options={"cutoff_dim": 20})
     result = eng.run(prog)
     state = result.state
     return np.array([state.trace(), ]), np.diagonal(state.reduced_dm([0]))[:6]
