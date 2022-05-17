@@ -10,13 +10,13 @@ def state_generation():
         Squeezed(0.8814, 0) | q[0]
        # S2gate(1,0)| (q[0], q[1])
         # S2gate(1.1,0)| (q[0], q[1]
-        Dgate(4.0675,np.pi) | q[0]
+        Dgate(0.4858,-0.8135) | q[0]
         BSgate(0.001, 0) | (q[0], q[1])
         MeasureFock(select=1) | q[1]
-        Dgate(4.7067,0) | q[0]
+        Dgate(0.7060,1.5708) | q[0]
         BSgate(0.001, 0) | (q[0], q[2])
         MeasureFock(select=1) | q[2]
-        Dgate(0.6413, np.pi) | q[0]
+        Dgate(0.4855, -2.3276) | q[0]
         Sgate(0.8814, np.pi) | q[0]
         #MeasureFock(select=1) | q[1]
 
