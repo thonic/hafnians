@@ -10,18 +10,20 @@ def state_generation():
         Squeezed(0.8814, 0) | q[0]
        # S2gate(1,0)| (q[0], q[1])
         # S2gate(1.1,0)| (q[0], q[1]
-        Dgate(0.4858,-0.8135) | q[0]
+        Dgate(1.4152,np.pi) | q[0]
+
         BSgate(0.001, 0) | (q[0], q[1])
         MeasureFock(select=1) | q[1]
-        Dgate(0.7060,1.5708) | q[0]
+        Dgate(1.4144,0) | q[0]
+
         BSgate(0.001, 0) | (q[0], q[2])
         MeasureFock(select=1) | q[2]
-        Dgate(0.4855, -2.3276) | q[0]
+       # Dgate(0.4855, -2.3276) | q[0]
         Sgate(0.8814, np.pi) | q[0]
         #MeasureFock(select=1) | q[1]
 
 
-    eng = sf.Engine("fock", backend_options={"cutoff_dim": 25})
+    eng = sf.Engine("fock", backend_options={"cutoff_dim": 20})
     result = eng.run(prog)
     state = result.state
     return np.array([state.trace(), ]), np.diagonal(state.reduced_dm([0]))[:6]
