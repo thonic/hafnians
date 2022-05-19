@@ -22,12 +22,11 @@ def state_generation():
         Sgate(0.8814, np.pi) | q[0]
         #MeasureFock(select=1) | q[1]
 
+    # eng = sf.Engine("gaussian")
+    # result = eng.run(prog)
+    # return result.state_data  # (tuple(mu, cov))
 
     eng = sf.Engine("fock", backend_options={"cutoff_dim": 25})
     result = eng.run(prog)
     state = result.state
     return np.array([state.trace(), ]), np.diagonal(state.reduced_dm([0]))[:6]
-
-    # # result:
-    # 0.9999997939494688
-    # [0.64805427+0.j 0.        +0.j 0.18794405+0.j 0.        +0.j]
