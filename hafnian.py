@@ -6,7 +6,7 @@ from datetime import datetime
 import numpy as np
 from thewalrus.quantum import Amat, Qmat, reduced_gaussian, density_matrix_element, density_matrix
 from thewalrus.samples import hafnian_sample_state, generate_hafnian_sample
-from thewalrus import hafnian
+from thewalrus import hafnian, loop_hafnian
 from time import time
 import logging
 from pathlib import Path
@@ -76,7 +76,7 @@ post_select = {k: v for k, v in enumerate(post_select) if v != -1}
 
 # dm = density_matrix(mean, covariance_matrix, post_select, hbar=1, normalize=True)
 A = Amat(covariance_matrix, hbar=1)
-haf = hafnian(A, loop=True)
+haf = loop_hafnian(A, D=mean, reps=None, glynn=True)
 
 headers = ["hafnian"]
 with open(output_path, 'a') as csvfile:
