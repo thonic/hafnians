@@ -58,7 +58,8 @@ output_path = output_path / output_fname
 
 covariance_matrix = np.genfromtxt(args.covariance_file, delimiter=",")
 mean = np.genfromtxt(args.mean_file, delimiter=",")
-post_select = np.genfromtxt(args.post_select_file, delimiter=",", dtype=int)
+post_select = np.atleast_1d(np.genfromtxt(args.post_select_file, delimiter=",", dtype=int))
+
 
 # check the inputs are valid
 assert (
