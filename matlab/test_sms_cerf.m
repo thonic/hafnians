@@ -2,43 +2,38 @@
 
 
 
-%this program will take the alp's and squeezing
+% this program will take the alp's and squeezing
 % and compare the output probabilities from the defn of the state
 % with derivatives of the Q function
 % and  haf/loop hafnian form 
 % for a single mode
 
+% USES froot2.m as an input to give alp parameter and cp initial state
 
 i=sqrt(-1);
 
 N=max(size(cp)); %total number of modes
 
 
-%from mukunda 1994
-omg=[eye(N) i*eye(N);
-    eye(N) -i*eye(N)]/sqrt(2);
-beta=[zeros(N) eye(N);-eye(N) zeros(N)];
-sig3=[eye(N) zeros(N);zeros(N) -eye(N)];
+%permutation matrix 
 p=[zeros(N) eye(N);eye(N) zeros(N)];
-em=eye(2*N);
 
 
 
+%squeezing parameter 
 sq=asinh(1);
-
+%squeezing matrices
 cm=eye(N);
 cm(1,1)=cosh(sq);
 sm=zeros(N);
 sm(1,1)=sinh(sq);
 
 
+%squeezing transformatriom symplectic 
 s=[cm sm;sm cm];
 s2=[cm -sm;-sm cm];
 
-
-% alp=[1;-1]
-
-%initial cv
+%initial covariance matrix 
 cv=s*s'/2;
 
 
@@ -46,22 +41,25 @@ cv=s*s'/2;
 % t=0.99999999;
 phi=acos(t);
 
-% phi=1e-01;
+
 
 totbs=eye(N);
+%beamsplitter matrix 
 U=[cos(phi) sin(phi); sin(phi) -cos(phi)];
 
-cv1=cv;
+cv1=cv; %initial state 
 
+
+%loop for transforming the covariance matrix ONLY 
 for j=2:N
     
-    bs=create_bs(U,1,j,N);
+    bs=create_bs(U,1,j,N); %create beamsplitter between modes 1 and j
     
-    bt=blkdiag(bs,conj(bs));
+    bt=blkdiag(bs,conj(bs)); %symplectic beamsplitter trans
     
     totbs=bs*totbs;
     
-    cv=bt*cv*bt';
+    cv=bt*cv*bt'; %new covariance matrix 
     
 end
 
@@ -82,29 +80,41 @@ dv=zeros(N,1);
 dv(1)=dv(1)+alp(1);
 
 
+% loop for evolving displacement vector 
 for j=2:max(size(alp));
 
 
 bs=create_bs(U,1,j,N);
 
+% beamsplitter transformation of dv
 dv=bs*dv;
 
+% add in new displacement 
 dv(1)=dv(1)+alp(j);
 
 
 end
 
-
-
-
-
+% total displacment vector for a and a^*
 bdv = [dv;conj(dv)];
 
+
+% final parameters for Q function-  exp 1/2[ xAx + 2Fx ]
 bigA = A; 
 bigf = iq*bdv;
 
 %norm const 
 nf=exp(-1/2*bdv.'*iq*bdv)/sqrt(det(qcv));
+
+
+
+%%%%%% stops here %%%%%%%%%%%
+
+break
+
+
+
+
 
 %prob of 1 photon in herald mode 
 % is approx just prob 1 photon from coherent state
