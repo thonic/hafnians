@@ -78,8 +78,9 @@ post_select = {k: v for k, v in enumerate(post_select) if v != -1}
 # dm = density_matrix(mean, covariance_matrix, post_select, hbar=1, normalize=True)
 A = Amat(covariance_matrix, hbar=1)
 haf = loop_hafnian(A, D=mean, reps=None, glynn=True)
+# maybe use hafnian_batched for multiple probs
 
 headers = ["hafnian"]
-with open(output_path, 'a') as csvfile:
-    for h, r in zip(headers, (haf, )):
-        np.savetxt(csvfile, np.atleast_1d(r), "%.5e", delimiter=', ', newline='\n', header=h, footer='')
+with open(output_path, "a") as csvfile:
+    for h, r in zip(headers, (haf,)):
+        np.savetxt(csvfile, np.atleast_1d(r), "%.5e", delimiter=", ", newline="\n", header=h, footer="")
