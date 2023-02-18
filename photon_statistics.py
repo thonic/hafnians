@@ -8,7 +8,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from scipy.linalg import block_diag
 from scipy.special import genlaguerre
 
-
+#Implementation of the paper photon statistics for two mode squeezed states
 def probability(n1, n2, a1, a2, r):
     p = min(n1,n2)
     q = max(n1,n2)
