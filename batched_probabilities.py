@@ -9,14 +9,13 @@ from thewalrus.quantum import (Amat, Qmat, density_matrix,
 from thewalrus.samples import generate_hafnian_sample, hafnian_sample_state
 
 # logging.basicConfig(level=logging.DEBUG)
-r = 1.5
+r = 0.5
 sinh2r = np.sinh(2*r)
 cosh2r = np.cosh(2*r)
 
 # Interferometer matrix
 fourier_matrix  = np.fft.fft(np.eye(2))/np.sqrt(2)
 # fourier_matrix = np.array([[1, 1j],[1j, 1]])/np.sqrt(2)
-print(fourier_matrix)
 
 fourier_conjugate = np.conjugate(fourier_matrix)
 fourier_transpose = np.transpose(fourier_matrix)
@@ -25,7 +24,7 @@ interferometer = block_diag(fourier_matrix, fourier_conjugate)
 interferometer_dagger = block_diag(fourier_dagger, fourier_transpose)
 
 # simple covariance matrix, two modes
-covariance_matrix = np.array([[cosh2r, 0, 0, sinh2r], [0, cosh2r, sinh2r, 0], [0, sinh2r, cosh2r, 0], [sinh2r, 0, 0, cosh2r]])
+covariance_matrix = np.array([[cosh2r, 0, 0, -sinh2r], [0, cosh2r, -sinh2r, 0], [0, -sinh2r, cosh2r, 0], [-sinh2r, 0, 0, cosh2r]])
 covariance_matrix = 0.5*interferometer @ covariance_matrix @ interferometer_dagger
 
 Q = Qmat(covariance_matrix, hbar=1)
