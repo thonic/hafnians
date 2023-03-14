@@ -33,7 +33,7 @@ def probability(n1, n2, a1, a2, r):
         n = n1
         absL = np.power(abs(L),2)
         earg2 = -1*(np.power(abs(a1),2) + np.power(abs(a2),2) + tanhr*(a1*a2 + np.conj(a1)*np.conj(a2)))
-        prob = (np.power(tanhr,2*n)/coshr) * absL * math.exp(earg2)
+        prob = (np.power(tanhr,2*n)/(coshr*coshr)) * absL * math.exp(earg2)
     #Probability Distribution P(n1,n2)
     else:
         prob = np.power(abs(c),2)
@@ -41,8 +41,8 @@ def probability(n1, n2, a1, a2, r):
 
 #two mode squeezed state sample configuration.
 diagonal = False
-a1 = 3.0
-a2 = 3.0
+a1 = 3
+a2 = 3
 r = 1.5
 
 if diagonal:
@@ -60,14 +60,15 @@ if diagonal:
 
 else:
     # Three Dimensional plot for different values of n1, n2
-    n1 = np.arange(0, 50, 1)
-    n2 = np.arange(0, 50, 1)
+    n1 = np.arange(0, 2, 1)
+    n2 = np.arange(0, 2, 1)
     x, y = np.meshgrid(n1, n2)
     prob = np.array([probability(n1,n2,a1,a2,r) for n1,n2 in zip(np.ravel(x), np.ravel(y))])
     z = prob.reshape(x.shape)
+    print(z)
     fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
     surf = ax.plot_surface(x, y, z, cmap=cm.coolwarm, linewidth=0, antialiased=False)
-    ax.set_zlim(0, 0.02)
+    ax.set_zlim(0, 1)
     ax.zaxis.set_major_locator(LinearLocator(10))
     # A StrMethodFormatter is used automatically
     ax.zaxis.set_major_formatter('{x:.02f}')
