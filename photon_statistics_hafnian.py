@@ -4,10 +4,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator
-from mpl_toolkits.mplot3d import Axes3D
-from scipy.linalg import block_diag
-from numpy.linalg import norm
-from thewalrus import hafnian_batched, loop_hafnian
+
+from thewalrus import loop_hafnian
 from thewalrus.quantum import Amat, Qmat, Xmat
 
 
