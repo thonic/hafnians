@@ -5,9 +5,9 @@ import numpy as np
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator
 
-from thewalrus import loop_hafnian
-from thewalrus.quantum import Amat, Qmat, Xmat
-
+from thewalrus.thewalrus import loop_hafnian
+from thewalrus.thewalrus.quantum import Amat, Qmat, Xmat
+from thewalrus.thewalrus import loop_hafnian_batch
 
 def probability(covariance_matrix, displacement_vector, pattern):
     N = len(covariance_matrix)//2

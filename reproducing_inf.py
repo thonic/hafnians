@@ -1,7 +1,7 @@
 # inputs: covariance, displacement, which photons to measure
 import numpy as np
-from thewalrus import hafnian_batched
-from thewalrus.quantum import Amat, Qmat
+from thewalrus.thewalrus import hafnian_batched
+from thewalrus.thewalrus.quantum import Amat, Qmat
 
 # simple covariance matrix, two modes
 covariance_matrix = np.identity(4)

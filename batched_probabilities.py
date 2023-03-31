@@ -3,10 +3,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 from scipy.linalg import block_diag
-from thewalrus import hafnian, hafnian_batched, loop_hafnian
-from thewalrus.quantum import (Amat, Qmat, density_matrix,
+from thewalrus.thewalrus import hafnian, hafnian_batched, loop_hafnian
+from thewalrus.thewalrus.quantum import (Amat, Qmat, density_matrix,
                                density_matrix_element, reduced_gaussian)
-from thewalrus.samples import generate_hafnian_sample, hafnian_sample_state
+from thewalrus.thewalrus.samples import generate_hafnian_sample, hafnian_sample_state
 
 # logging.basicConfig(level=logging.DEBUG)
 r = 0.5
