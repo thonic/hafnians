@@ -1,0 +1,3 @@
+[submodule "thewalrus"]
+	path = thewalrus
+	url = https://hoskovec.cz:3000/thonic/thewalrus.git
