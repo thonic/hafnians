@@ -32,7 +32,7 @@ def probability(covariance_matrix, displacement_vector, pattern):
 #  Reproducing results of photon statistics using the hafnian
 r  = 1.5
 a1 = 3
-a2 = 3
+a2 = -3
 a1c = np.conj(a1)
 a2c = np.conj(a2)
 coshr  = np.cosh(r)

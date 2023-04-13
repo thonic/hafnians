@@ -42,7 +42,7 @@ def probability(n1, n2, a1, a2, r):
 #two mode squeezed state sample configuration.
 diagonal = False
 a1 = 3
-a2 = -3
+a2 = 3
 r = 1.5
 
 if diagonal:
@@ -60,8 +60,8 @@ if diagonal:
 
 else:
     # Three Dimensional plot for different values of n1, n2
-    n1 = np.arange(0, 15, 1)
-    n2 = np.arange(0, 15, 1)
+    n1 = np.arange(0, 50, 1)
+    n2 = np.arange(0, 50, 1)
     x, y = np.meshgrid(n1, n2)
     prob = np.array([probability(n1,n2,a1,a2,r) for n1,n2 in zip(np.ravel(x), np.ravel(y))])
     z = prob.reshape(x.shape)
