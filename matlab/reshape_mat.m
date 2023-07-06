@@ -25,7 +25,7 @@ function x = reshape_mat(m,M,K,N)
    end
    
 
-   new_mat=eye(N);
+   new_mat=eye(2*N);
    
    c1=1;
 
@@ -36,11 +36,11 @@ function x = reshape_mat(m,M,K,N)
             
            new_mat(c1,c2)=m(j1,j2);
        
+            new_mat(c1+M,c2+M) = conj(m(j1,j2));
            
-           
-           c2=c2+M;
+           c2=c2+2*M;
        end 
-       c1=c1+M;
+       c1=c1+2*M;
    end
    
 
