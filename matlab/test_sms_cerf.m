@@ -22,14 +22,14 @@ p=[zeros(N) eye(N);eye(N) zeros(N)];
 
 %squeezing parameter 
 sq=asinh(1);
-%squeezing matrices
+%squeezing matrices for the covariance matrix 
 cm=eye(N);
 cm(1,1)=cosh(sq);
 sm=zeros(N);
 sm(1,1)=sinh(sq);
 
 
-%squeezing transformatriom symplectic 
+%squeezing transformation symplectic 
 s=[cm sm;sm cm];
 s2=[cm -sm;-sm cm];
 
@@ -37,7 +37,7 @@ s2=[cm -sm;-sm cm];
 cv=s*s'/2;
 
 
-%transmission coeficitent 
+%transmission coeficitent from froot2.m
 % t=0.99999999;
 phi=acos(t);
 
@@ -67,13 +67,15 @@ end
 tbs2=blkdiag(totbs,conj(totbs));
 
 
-
+%final squeezing transformation 
 cv=s2*cv*s2';
 cv1=cv;
 qcv=cv+eye(2*N)/2;
 iq=inv(qcv);
 f=eye(2*N)-iq;
 A=p*f; 
+
+
 
 %displacement vector 
 dv=zeros(N,1);
@@ -110,16 +112,14 @@ nf=exp(-1/2*bdv.'*iq*bdv)/sqrt(det(qcv));
 
 %%%%%% stops here %%%%%%%%%%%
 
-break
+
+% prob of 1 photon in herald mode 
+% = prob to generate the input state
 
 
-
-
-
-%prob of 1 photon in herald mode 
-% is approx just prob 1 photon from coherent state
 
 %reduced cv matrix 
+%reduced dv vectors over only herald modes
 red_bdv = delete_vec(bdv,[1,N+1]);
 red_cv = delete_cv(cv,[1]);
 red_qcv = delete_cv(qcv,[1]);
@@ -135,10 +135,15 @@ rnf= exp(-1/2*red_bdv.'*red_iq*red_bdv)/sqrt(det(red_qcv));
 
 ph12b = pr_ones(red_cv,red_bdv);
 
-ph1=real(ph12b);
+
+%prob to generate state
+ph=real(ph12b);
 
 
-break
+% pr_nbar(red_cv,red_bdv,[1]) 
+
+
+
 
 
 %1st way to calculate the prob of 1 photon in mode 2 (detection mode)
@@ -146,6 +151,13 @@ break
 
 % ph1 = ph1*abs(bdv(3))^2*exp(-abs(bdv(3))^2);
 
+v_dec = ones(1,N-1);
+
+p0= pr_nbar(cv,bdv,[0 v_dec]) ;
+p1= pr_nbar(cv,bdv,[1 v_dec]);
+p2= pr_nbar(cv,bdv,[2 v_dec]);
+
+p3= pr_nbar(cv,bdv,[3 v_dec]);
 
 
 
@@ -157,17 +169,23 @@ break
 % p3=pr_nbar(cv,bdv,[3 1 1 1 1]);
 % p4=pr_nbar(cv,bdv,[4 1 1 1 1]);
 % p5=pr_nbar(cv,bdv,[5 1 1 1 1]);
-% 
-% 
-% e0=norm(p0/ph1-abs(cp(1)).^2)
-% e1=norm(p1/ph1-abs(cp(2)).^2)
-% e2=norm(p2/ph1-abs(cp(3)).^2)
-% e3=norm(p3/ph1-abs(cp(4)).^2)
-% e4=norm(p4/ph1-abs(cp(5)).^2)
-e5=norm(p5/ph1-0)
+
+
+
+%error terms 
+e0=norm(p0/ph-abs(cp(1)).^2)
+e1=norm(p1/ph-abs(cp(2)).^2)
+e2=norm(p2/ph-abs(cp(3)).^2)
+% % e3=norm(p3/ph1-abs(cp(4)).^2)
+% % e4=norm(p4/ph1-abs(cp(5)).^2)
+% e5=norm(p5/ph1-0)
 
 break
 
+
+
+% calculations of probabilties 
+% using symbolic derivatives 
 
 syms x1 x2 x3 x4
 xv=[x1 x2 x3 x4];
