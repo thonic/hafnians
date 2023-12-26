@@ -45,7 +45,7 @@ same_type_nongaussian = True
 
 if not is_gaussian:
     beta, kappa, M = 1.5, 0.5, 0
-    states = (np.array([1,1]), np.array([1,1]), np.array([1,1]))
+    states = (np.array([1,1,1]), np.array([1,1,1]), np.array([1,1,1]))
     K = len(states)
     cvs, dvs, count, size = {}, {}, 0, 0
     for cp in states:
@@ -83,7 +83,7 @@ elif same_type_nongaussian:
     cp = [1,1]
     cp = cp/np.sqrt((np.conj(np.transpose(cp))@cp))    
     M = len(cp)
-    count = K = 4
+    count = K = 5
     N = M*K
     if(count>2):
         surface_map = False

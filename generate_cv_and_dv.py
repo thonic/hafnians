@@ -145,7 +145,6 @@ def generate_u_cv_and_dv_udag(cv, dv, K, M, N):
     # reshape changes the 2x2 matrix to a larger matrix, KMxKM, between the modes specified in the argument
     bigu = reshape_mat(uint,M,K,N)
     bigt = block_diag(bigu,np.conjugate(bigu))
-    print("BIGT =\n",bigt.shape)
     cv = bigt @ cv @ np.conjugate(np.transpose(bigt))
     dv = bigt @ dv
     
