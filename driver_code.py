@@ -9,68 +9,75 @@ from generate_cv_and_dv import *
 from generate_displacements import *
 from hafnian_batched_statistics import *
 
+
+def rearrange_cv_and_dv(cvs, dvs, count, size):
+    covariance_matrix = np.zeros((size*2,size*2),dtype="complex_")
+    displacement_vector = np.zeros(size*2,dtype="complex_")
+    counter, i, j, m, ocount = 0, 0, 0, 0, 0
+    xinc = yinc = ssize = int(len(cvs[counter%count])/2)
+    dim = size/ssize
+    loop = 2*size-1
+    while(i<loop):
+        ocount = ocount%dim 
+        icount = 0
+        n = 0
+        j = 0
+        displacement_vector[i:i+xinc] = dvs[counter%count][m:m+xinc]
+        while(j<loop):
+            icount = icount%dim
+            if(ocount == icount):
+                covariance_matrix[i:i+xinc,j:j+yinc] = cvs[counter%count][m:m+xinc,n:n+yinc]
+                n += yinc
+            j += yinc
+            icount += 1
+        ocount += 1
+        i += xinc
+        counter+=1
+        if(counter%count== 0):
+            m += xinc
+
+    return covariance_matrix, displacement_vector    
+
+    
 # This code is designed to just take inputs for generating covariance matrices and displacement vectors and feed into the hafnian batched.
-is_gaussian = True
-surface_map = False
 cutoff = 3
-test = True
+is_gaussian = False
+surface_map = True
+same_type_nongaussian = True
+
 
 if not is_gaussian:
-    # Driver Code for non gaussian states generation of same type K * M -> generate_cv_And_dv.py and generate_displacements.py
-    beta = 1.5
-    kappa = 0.5    
-    M = 0   
-    states = (compute_coherent_coefficients(beta, kappa, n=2),compute_coherent_coefficients(-beta, kappa, n=2))
+    beta, kappa, M = 1.5, 0.5, 0
+    states = (np.array([1,1]), np.array([1,1]), np.array([1,1]), np.array([1,1]))
     K = len(states)
-    covariance_matrix = np.zeros((8,8),dtype="complex_")
-    displacement_vector = np.zeros(8,dtype="complex_")
-
-    # cp = np.array([1,1,1], dtype = "complex_")
+    cvs, dvs, count, size = {}, {}, 0, 0
     for cp in states:
+        size += len(cp)
         cp = cp/np.sqrt((np.conj(np.transpose(cp))@cp))
-        print(cp)
         M = len(cp)
         k = 1
         alpha = generate_alpha(cp)
         cv, dv = generate_cv_and_dv(alpha,k,M,M*k,single_mode=True)
-        # if covariance_matrix is None and displacement_vector is None:
-        covariance_matrix[0:2,0:2] = covariance_matrix[2:4,2:4] = cv[0:2,0:2]
-        covariance_matrix[0:2,4:6] = covariance_matrix[2:4,6:8] = cv[0:2,2:4]
-        covariance_matrix[4:6,0:2] = covariance_matrix[6:8,2:4] = cv[2:4,0:2]
-        covariance_matrix[4:6,4:6] = covariance_matrix[6:8,6:8] = cv[2:4,2:4]
-
-        displacement_vector[0:2] = dv[0:2]
-        displacement_vector[2:4] = dv[0:2]
-        displacement_vector[4:6] = dv[2:4]
-        displacement_vector[6:8] = dv[2:4]
-        
-        # else:
-        #     covariance_matrix = block_diag(covariance_matrix,cv)
-        #     displacement_vector = np.block([displacement_vector,dv])
-
-        print("\nCOVARIANCE MATRIX X= \n",covariance_matrix)
-        print("\nDISPLACEMENT VECTOR X= \n",displacement_vector)
-    
-    # we will be calculating prob herald for getting one photon in all the herald modes by reducing the cv and dv.
+        cvs[count] = cv
+        dvs[count] = dv
+        count += 1   
+    covariance_matrix, displacement_vector = rearrange_cv_and_dv(cvs, dvs, count, size)  
     N = M*K
     covariance_matrix, displacement_vector = generate_u_cv_and_dv_udag(covariance_matrix,displacement_vector,K,M,N)
-    # print("\nCOVARIANCE MATRIX = \n",covariance_matrix)
-    # print("\nDISPLACEMENT VECTOR = \n",displacement_vector)
     deletion_array = np.zeros(2*N)
     for i in range(2*N):
         if i%M == 0:
             deletion_array[i] = 1
-
     reduced_cv = delete_cv(covariance_matrix, deletion_array)
     reduced_dv = delete_vec(displacement_vector, deletion_array)
-    print("\nReduced COVARIANCE MATRIX = \n",reduced_cv)
-    print("\nReduced DISPLACEMENT VECTOR = \n",reduced_dv)
     prob_herald_hafnian = probability(reduced_cv, reduced_dv, cutoff=cutoff)
     n = (1,) * (K*(M-1))
     prob_herald = slice_probabilities(prob_herald_hafnian, n)
     prob_hafnian_nbar = non_gaussian_probability(covariance_matrix, displacement_vector, cutoff, prob_herald)
 
-elif test:
+
+elif same_type_nongaussian:
+    # Driver code for multiple but same non gaussian states
     beta = 1.5
     kappa = 0.5     
     # cp = compute_coherent_coefficients(beta, kappa, n=4)
@@ -81,15 +88,11 @@ elif test:
     N = M*K
     alpha = generate_alpha(cp)
     cv, dv = generate_cv_and_dv(alpha,K,M,N)
-    print("shape =",cv.shape,dv.shape)
     covariance_matrix, displacement_vector = generate_u_cv_and_dv_udag(cv,dv,K,M,N)
-    print("\nCOVARIANCE MATRIX = \n",covariance_matrix)
-    print("\nDISPLACEMENT VECTOR = \n",displacement_vector)
     deletion_array = np.zeros(2*N)
     for i in range(2*N):
         if i%M == 0:
             deletion_array[i] = 1
-
     reduced_cv = delete_cv(covariance_matrix, deletion_array)
     reduced_dv = delete_vec(displacement_vector, deletion_array)
     prob_herald_hafnian = probability(reduced_cv, reduced_dv, cutoff=cutoff)
@@ -98,15 +101,10 @@ elif test:
     prob_hafnian_nbar = non_gaussian_probability(covariance_matrix, displacement_vector, cutoff, prob_herald)
 
 
-
-    
 else:
-    # Driver code for gaussian states, specifically two mode squeezed states from hafnian_batched_statistics.py
-    K = 2
-    M = 1
-    a1 = 3
-    a2 = -3
-    r  = 1.5
+    # Driver code for gaussian states
+    K, M = 2, 1
+    a1, a2, r = 3, -3, 1.5
     a1c = np.conj(a1)
     a2c = np.conj(a2)
     coshr  = np.cosh(r)
@@ -129,7 +127,7 @@ if surface_map:
         for j in n2:
             prob_to_display[(i,j)] = post_select_on_herald_modes(prob_hafnian_nbar,(i,j),K,M).real
     pprint.pprint(prob_to_display)
-    
+
     # # to plot a surface map
     # z = prob.reshape(x.shape)
     # fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
@@ -153,19 +151,14 @@ if surface_map:
 
 else:
     # nbar represents [n1,n2,n3......,nm] no of photons in each output modes arranged in a tuple
-    nbar = (0,0) 
     n1 = np.arange(0, cutoff, 1)
     n2 = np.arange(0, cutoff, 1)
     n3 = np.arange(0, cutoff, 1)
     n4 = np.arange(0, cutoff, 1)
-
     prob_to_display = {}
     for i in n1:
         for j in n2:
             for k in n3:
                 for l in n4:
-                    prob_to_display[(i,j,k,l)] = post_select_on_herald_modes(prob_hafnian_nbar,(i,j,k,l),K=4,M=2).real
+                    prob_to_display[(i,j,k,l)] = post_select_on_herald_modes(prob_hafnian_nbar,(i,j,k,l),K,M).real
     pprint.pprint(prob_to_display)
-
-    # prob_nbar = post_select_on_herald_modes(prob_hafnian_nbar, nbar, K=4, M=2).real
-    # print("probability of given nbar is", prob_nbar)

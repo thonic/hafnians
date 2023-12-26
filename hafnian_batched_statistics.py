@@ -26,7 +26,7 @@ def post_select_on_herald_modes(hafnian, n, K, M):
     idx = []
     for i in range(2*K):
         idx += [n[i%K]] + [1]*(M-1)
-    # print(idx)
+    # print("idx=",idx)
 
     return hafnian[tuple(idx)]
 
