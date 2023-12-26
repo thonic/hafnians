@@ -1,4 +1,5 @@
 import cmath
+import itertools
 import math
 import pprint
 
@@ -16,14 +17,11 @@ def rearrange_cv_and_dv(cvs, dvs, count, size):
     counter, i, j, m, ocount = 0, 0, 0, 0, 0
     xinc = yinc = ssize = int(len(cvs[counter%count])/2)
     dim = size/ssize
-    loop = 2*size-1
-    while(i<loop):
+    while(i<2*size-1):
         ocount = ocount%dim 
-        icount = 0
-        n = 0
-        j = 0
+        icount, n, j = 0, 0, 0
         displacement_vector[i:i+xinc] = dvs[counter%count][m:m+xinc]
-        while(j<loop):
+        while(j<2*size-1):
             icount = icount%dim
             if(ocount == icount):
                 covariance_matrix[i:i+xinc,j:j+yinc] = cvs[counter%count][m:m+xinc,n:n+yinc]
@@ -35,7 +33,6 @@ def rearrange_cv_and_dv(cvs, dvs, count, size):
         counter+=1
         if(counter%count== 0):
             m += xinc
-
     return covariance_matrix, displacement_vector    
 
     
@@ -48,7 +45,7 @@ same_type_nongaussian = True
 
 if not is_gaussian:
     beta, kappa, M = 1.5, 0.5, 0
-    states = (np.array([1,1]), np.array([1,1]), np.array([1,1]), np.array([1,1]))
+    states = (np.array([1,1]), np.array([1,1]), np.array([1,1]))
     K = len(states)
     cvs, dvs, count, size = {}, {}, 0, 0
     for cp in states:
@@ -61,6 +58,8 @@ if not is_gaussian:
         cvs[count] = cv
         dvs[count] = dv
         count += 1   
+    if(count > 2):
+        surface_map = False
     covariance_matrix, displacement_vector = rearrange_cv_and_dv(cvs, dvs, count, size)  
     N = M*K
     covariance_matrix, displacement_vector = generate_u_cv_and_dv_udag(covariance_matrix,displacement_vector,K,M,N)
@@ -84,8 +83,10 @@ elif same_type_nongaussian:
     cp = [1,1]
     cp = cp/np.sqrt((np.conj(np.transpose(cp))@cp))    
     M = len(cp)
-    K = 4
+    count = K = 4
     N = M*K
+    if(count>2):
+        surface_map = False
     alpha = generate_alpha(cp)
     cv, dv = generate_cv_and_dv(alpha,K,M,N)
     covariance_matrix, displacement_vector = generate_u_cv_and_dv_udag(cv,dv,K,M,N)
@@ -104,6 +105,7 @@ elif same_type_nongaussian:
 else:
     # Driver code for gaussian states
     K, M = 2, 1
+    count = K
     a1, a2, r = 3, -3, 1.5
     a1c = np.conj(a1)
     a2c = np.conj(a2)
@@ -123,9 +125,12 @@ if surface_map:
     x, y = np.meshgrid(n1, n2)
     prob = np.array([post_select_on_herald_modes(prob_hafnian_nbar,(n1,n2),K,M).real for n1,n2 in zip(np.ravel(x), np.ravel(y))])
     prob_to_display = {}
-    for i in n1:
-        for j in n2:
-            prob_to_display[(i,j)] = post_select_on_herald_modes(prob_hafnian_nbar,(i,j),K,M).real
+    ranges = []
+    for i in range(count):
+        ranges.append(range(0,cutoff))
+    for xs in itertools.product(*ranges):
+        index = tuple(xs)
+        prob_to_display[index] = post_select_on_herald_modes(prob_hafnian_nbar,index,K,M).real
     pprint.pprint(prob_to_display)
 
     # # to plot a surface map
@@ -150,15 +155,11 @@ if surface_map:
     plt.show()
 
 else:
-    # nbar represents [n1,n2,n3......,nm] no of photons in each output modes arranged in a tuple
-    n1 = np.arange(0, cutoff, 1)
-    n2 = np.arange(0, cutoff, 1)
-    n3 = np.arange(0, cutoff, 1)
-    n4 = np.arange(0, cutoff, 1)
     prob_to_display = {}
-    for i in n1:
-        for j in n2:
-            for k in n3:
-                for l in n4:
-                    prob_to_display[(i,j,k,l)] = post_select_on_herald_modes(prob_hafnian_nbar,(i,j,k,l),K,M).real
+    ranges = []
+    for i in range(count):
+        ranges.append(range(0,cutoff))
+    for xs in itertools.product(*ranges):
+        index = tuple(xs)
+        prob_to_display[index] = post_select_on_herald_modes(prob_hafnian_nbar,index,K,M).real
     pprint.pprint(prob_to_display)
