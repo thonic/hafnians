@@ -6,3 +6,4 @@ strawberryfields
 thewalrus
 numba
 numdifftools
+sympy

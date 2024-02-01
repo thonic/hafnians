@@ -45,7 +45,7 @@ same_type_nongaussian = True
 
 if not is_gaussian:
     beta, kappa, M = 1.5, 0.5, 0
-    states = (np.array([1,1,1]), np.array([1,1,1]), np.array([1,1,1]))
+    states = (np.array([1,1,1,1]), np.array([1,1,1,1]))
     K = len(states)
     cvs, dvs, count, size = {}, {}, 0, 0
     for cp in states:
@@ -118,6 +118,7 @@ else:
     displacement_vector = np.array([a1, a2, a1c, a2c])
     prob_hafnian_nbar = probability(covariance_matrix, displacement_vector, cutoff)
 
+
 if surface_map:
     # Feed the covariance matrix into the hafnian_batched_function and generate plots for 2 modes, for higher modes, see below!
     n1 = np.arange(0, cutoff, 1)
@@ -153,6 +154,7 @@ if surface_map:
     plt.xlabel ("n1")
     plt.ylabel ("n2")
     plt.show()
+
 
 else:
     prob_to_display = {}

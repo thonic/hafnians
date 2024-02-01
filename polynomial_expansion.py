@@ -16,7 +16,7 @@ yv = Matrix(y)
 t = np.random.randint(-4, 5, size=(N, R))
 
 # apply the random transformation
-xv = t * yv;
+xv = t * yv
 
 # the big product of partial derivatives
 polynomial = prod(xv)
