@@ -1,6 +1,7 @@
 # Implementation of CERF paper 2005 to generate displacement parameters alpha
 import numpy as np
 import math
+import cmath
 
 
 # writing function to generate coeffiecients for exp(i*kappa*n^2) states in fock basis (without coherent amplitudes)
