@@ -5,11 +5,11 @@ N = 5
 R = 3
 
 # Create symbolic variables x1, x2, ..., xN
-x = symbols('x1:{}'.format(N + 1))
+x = symbols("x1:{}".format(N + 1))
 xv = Matrix(x)
 
 # Create symbolic variables y1, y2, ..., yR
-y = symbols('y1:{}'.format(R + 1))
+y = symbols("y1:{}".format(R + 1))
 yv = Matrix(y)
 
 # random N by N matrix with entries -4..4

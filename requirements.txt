@@ -7,3 +7,4 @@ thewalrus
 numba
 numdifftools
 sympy
+pytest
