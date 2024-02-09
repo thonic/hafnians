@@ -45,7 +45,7 @@ same_type_nongaussian = True
 
 if not is_gaussian:
     beta, kappa, M = 1.5, 0.5, 0
-    states = (np.array([1,1,1,1]), np.array([1,1,1,1]))
+    states = (np.array([1,1,1,1]), np.array([1,-1,1,-1]))
     K = len(states)
     cvs, dvs, count, size = {}, {}, 0, 0
     for cp in states:
