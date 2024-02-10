@@ -17,11 +17,11 @@ def rearrange_cv_and_dv(cvs, dvs, count, size):
     counter, i, j, m, ocount = 0, 0, 0, 0, 0
     xinc = yinc = ssize = int(len(cvs[counter % count]) / 2)
     dim = size / ssize
-    while i < 2 * size - 1:
+    while i <= 2 * size - 1:
         ocount = ocount % dim
         icount, n, j = 0, 0, 0
         displacement_vector[i : i + xinc] = dvs[counter % count][m : m + xinc]
-        while j < 2 * size - 1:
+        while j <= 2 * size - 1:
             icount = icount % dim
             if ocount == icount:
                 covariance_matrix[i : i + xinc, j : j + yinc] = cvs[counter % count][m : m + xinc, n : n + yinc]

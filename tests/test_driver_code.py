@@ -6,8 +6,14 @@ from driver_code import rearrange_cv_and_dv
 
 def test_rearrange_basic():
     # Basic test to check if the function rearranges a simple set of CVs and DVs correctly
-    cvs = [np.array([[1, 1], [1, 1]]), np.array([[-1, -1], [-1, -1]])]
-    dvs = [np.array([0.5, 0.5]), np.array([-0.5, -0.5])]
+    cvs = {
+        0:np.array([[1, 1], [1, 1]]),    
+        1:np.array([[-1, -1], [-1, -1]])
+    }
+    dvs = {
+        0 : np.array([0.5, 0.5]),
+        1 : np.array([-0.5, -0.5])
+    }
     count = 2
     size = 2
     expected_covariance_matrix = np.array(
