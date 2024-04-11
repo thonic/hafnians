@@ -138,6 +138,7 @@ def generate_u_cv_and_dv_udag(cv, dv, K, M, N):
     # random interferometer, this can be chosen to be anything - 50/50 beamsplitter
     # uint = [[1, 1], [-1, 1]] / np.sqrt(2)
     uint = np.fft.fft(np.eye(K))/np.sqrt(K)
+    print("F = ",uint)
 
     # reshape changes the 2x2 matrix to a larger matrix, KMxKM, between the modes specified in the argument
     bigu = reshape_mat(uint, M, K, N)

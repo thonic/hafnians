@@ -37,15 +37,16 @@ def rearrange_cv_and_dv(cvs, dvs, count, size):
 
 
 # This code is designed to just take inputs for generating covariance matrices and displacement vectors and feed into the hafnian batched.
-cutoff = 3
+cutoff = 6
 is_gaussian = False
 surface_map = True
 same_type_nongaussian = True
 
 
-if not is_gaussian:
+if not is_gaussian: 
+    #Driver code for different type of input states
     beta, kappa, M = 1.5, 0.5, 0
-    states = (np.array([1, 1, 1, 1]), np.array([1, 1, 1, 1]))
+    states = (np.array([1, 1]), np.array([1, 1]), np.array([1, 1]), np.array([1, 1]), np.array([1, 1]))
     K = len(states)
     cvs, dvs, count, size = {}, {}, 0, 0
     for cp in states:
@@ -69,10 +70,10 @@ if not is_gaussian:
             deletion_array[i] = 1
     reduced_cv = delete_cv(covariance_matrix, deletion_array)
     reduced_dv = delete_vec(displacement_vector, deletion_array)
-    prob_herald_hafnian = probability(reduced_cv, reduced_dv, cutoff=cutoff)
+    prob_herald_hafnian = probability(reduced_cv, reduced_dv, cutoff=2)
     n = (1,) * (K * (M - 1))
     prob_herald = slice_probabilities(prob_herald_hafnian, n)
-    prob_hafnian_nbar = non_gaussian_probability(covariance_matrix, displacement_vector, cutoff, prob_herald)
+    prob_hafnian_nbar = non_gaussian_probability(covariance_matrix, displacement_vector, cutoff)
 
 
 elif same_type_nongaussian:
@@ -96,11 +97,11 @@ elif same_type_nongaussian:
             deletion_array[i] = 1
     reduced_cv = delete_cv(covariance_matrix, deletion_array)
     reduced_dv = delete_vec(displacement_vector, deletion_array)
-    prob_herald_hafnian = probability(reduced_cv, reduced_dv, cutoff=cutoff)
+    prob_herald_hafnian = probability(reduced_cv, reduced_dv, cutoff=2)
     n = (1,) * (K * (M - 1))
     prob_herald = slice_probabilities(prob_herald_hafnian, n)
-    prob_hafnian_nbar = non_gaussian_probability(covariance_matrix, displacement_vector, cutoff, prob_herald)
-
+    prob_hafnian_nbar = non_gaussian_probability(covariance_matrix, displacement_vector, cutoff)
+    
 
 else:
     # Driver code for gaussian states
@@ -118,6 +119,7 @@ else:
         [[cosh2r, 0, 0, -sinh2r], [0, cosh2r, -sinh2r, 0], [0, -sinh2r, cosh2r, 0], [-sinh2r, 0, 0, cosh2r]]
     )
     displacement_vector = np.array([a1, a2, a1c, a2c])
+    prob_herald = 1
     prob_hafnian_nbar = probability(covariance_matrix, displacement_vector, cutoff)
 
 
@@ -128,27 +130,25 @@ if surface_map:
     x, y = np.meshgrid(n1, n2)
     prob = np.array(
         [
-            post_select_on_herald_modes(prob_hafnian_nbar, (n1, n2), K, M).real
+            post_select_on_herald_modes(prob_hafnian_nbar, (n1, n2), K, M).real/prob_herald.real
             for n1, n2 in zip(np.ravel(x), np.ravel(y))
         ]
     )
     prob_to_display = {}
+    total_probability, non_zero_probabilities = 0, 0
     ranges = []
     for i in range(count):
         ranges.append(range(0, cutoff))
     for xs in itertools.product(*ranges):
         index = tuple(xs)
-        prob_to_display[index] = post_select_on_herald_modes(prob_hafnian_nbar, index, K, M).real
+        instance_probability = post_select_on_herald_modes(prob_hafnian_nbar, index, K, M).real/prob_herald.real
+        if(instance_probability >= 0.000001):
+            non_zero_probabilities += 1
+            total_probability += instance_probability
+            prob_to_display[index] = instance_probability
     pprint.pprint(prob_to_display)
-
-    # # to plot a surface map
-    # z = prob.reshape(x.shape)
-    # fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
-    # surf = ax.plot_surface(x, y, z, cmap=cm.coolwarm, linewidth=0, antialiased=False)
-    # ax.set_zlim(0, 1)
-    # ax.zaxis.set_major_locator(LinearLocator(10))
-    # ax.zaxis.set_major_formatter('{x:.02f}')
-    # plt.show()
+    print("Number of non-zero probability states = ", non_zero_probabilities)
+    print("Total Probability = ", total_probability)
 
     # to plot a histogram
     x = x.flatten()
@@ -165,10 +165,17 @@ if surface_map:
 
 else:
     prob_to_display = {}
+    total_probability, non_zero_probabilities = 0, 0
     ranges = []
     for i in range(count):
         ranges.append(range(0, cutoff))
     for xs in itertools.product(*ranges):
         index = tuple(xs)
-        prob_to_display[index] = post_select_on_herald_modes(prob_hafnian_nbar, index, K, M).real
+        instance_probability = post_select_on_herald_modes(prob_hafnian_nbar, index, K, M).real/prob_herald.real
+        if(instance_probability >= 0.000001):
+            non_zero_probabilities += 1
+            total_probability += instance_probability
+            prob_to_display[index] = instance_probability
     pprint.pprint(prob_to_display)
+    print("Number of non-zero probability states = ", non_zero_probabilities)
+    print("Total Probability = ", total_probability)
