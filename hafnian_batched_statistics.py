@@ -19,13 +19,14 @@ def slice_probabilities(hafnian, n):
 
     return hafnian[tuple(idx)] 
 
-# logic to post select 1 photon from every herald modes
-def post_select_on_herald_modes(hafnian, n, K, M):
+
+def post_select_on_herald_modes(hafnian, n, MK_dict):
     # n is a tuple (n1,n2,...ns) indicating a particular pattern of photons in the system modes
     idx = []
-    #for i in range(2 * K):
-    for i in range(K):
-        idx += [n[i % K]] + [1] * (M - 1)
+    K = len(MK_dict)
+    for k in MK_dict.keys():
+        M = MK_dict[k]
+        idx += [n[k % K]] + [1] * (M - 1)
     
     return hafnian[tuple(idx)] * np.conj(hafnian[tuple(idx)])
 

@@ -20,20 +20,23 @@ def delete_cv(m, v):
     return x
 
 
-def reshape_mat(m, M, K, N):
-    if M * K != N:
-        return False
-    # if len(m) != K:
-    #     return False
-
+def reshape_mat(m, MK_dict):
+    new_vec = np.zeros(len(MK_dict), dtype=int)
+    c1, N = 0, 0
+    for key in MK_dict.keys():
+        state = MK_dict[key]
+        M_state = state
+        new_vec[key] = c1
+        c1 += M_state
+        N += M_state
+    
     new_mat = np.identity(N, dtype="complex_")
-    c1, j1 = 0, 0
-    for j1 in range(len(m)):
-        c2 = 0
-        for j2 in range(len(m)):
-            new_mat[c1][c2] = m[j1][j2]
-            c2 = c2 + M
-        c1 = c1 + M
+    for i in range(len(MK_dict)):
+        c1 = new_vec[i]
+        for j in range(len(MK_dict)):
+            c2 = new_vec[j]
+            new_mat[c1][c2] = m[i][j]
+
     return new_mat
 
 
@@ -133,15 +136,10 @@ def generate_cv_and_dv(alpha, K, M, N, single_mode=False):
     return cv, totdv
 
 
-def generate_u_cv_and_dv_udag(cv, dv, K, M, N):
-    # cv,dv = generate_cv_and_dv(alpha, K, M, N)
-    # random interferometer, this can be chosen to be anything - 50/50 beamsplitter
-    # uint = [[1, 1], [-1, 1]] / np.sqrt(2)
+def generate_u_cv_and_dv_udag(cv, dv, MK_dict):
+    K = len(MK_dict)
     uint = np.fft.fft(np.eye(K))/np.sqrt(K)
-    print("F = ",uint)
-
-    # reshape changes the 2x2 matrix to a larger matrix, KMxKM, between the modes specified in the argument
-    bigu = reshape_mat(uint, M, K, N)
+    bigu = reshape_mat(uint, MK_dict)
     bigt = block_diag(bigu, np.conjugate(bigu))
     cv = bigt @ cv @ np.conjugate(np.transpose(bigt))
     dv = bigt @ dv

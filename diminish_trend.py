@@ -7,8 +7,8 @@ R = np.array([0.66, 0.4, 0.285, 0.206, 0.140])
 
 fig, ax = plt.subplots()
 ax.plot(p, R)
-
-ax.set(xlabel='no. of input modes', ylabel='ratio',
+plt.axis((1, 8, 0, 1))
+ax.set(xlabel='No. of input modes', ylabel=' R',
        title='Diminishing Trend - Bunching of Photons')
 ax.grid()
 
