@@ -79,4 +79,3 @@ def ij_correlation_value(prob, i, j):
 i = 1
 j = 2
 print("Correlation value between mode number {} and {} is {}".format(i,j,ij_correlation_value(prob_to_display,i,j)))
-

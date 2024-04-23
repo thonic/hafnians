@@ -51,7 +51,7 @@ def rearrange_cv_and_dv(cvs, dvs, count, size):
 
 def find_probabilities(states, cutoff, surface_map):
     MK_dict = {}
-    N, cvs, dvs, count, size = 0,{}, {}, 0, 0
+    N, cvs, dvs, count = 0, {}, {}, 0
     for cp in states:
         k = 1
         m = len(cp)
@@ -75,9 +75,9 @@ def find_probabilities(states, cutoff, surface_map):
             n.append(1)
         d += m
     deletion_array = np.concatenate((del_array,del_array))
-
     reduced_cv = delete_cv(covariance_matrix, deletion_array)
     reduced_dv = delete_vec(displacement_vector, deletion_array)
+    
     prob_herald_hafnian = probability(reduced_cv, reduced_dv, cutoff=2)
     prob_herald = slice_probabilities(prob_herald_hafnian, tuple(n))
     prob_hafnian_nbar = non_gaussian_probability(covariance_matrix, displacement_vector, cutoff)
@@ -128,7 +128,7 @@ def find_probabilities(states, cutoff, surface_map):
 # This code is designed to just take inputs for generating covariance matrices and displacement vectors and feed into the hafnian batched.
 cutoff = 5
 surface_map = True
-states = (np.array([1,1]), np.array([1,1]), np.array([1,1]))
+states = (np.array([1,1]), np.array([1,1]), np.array([1,1]), np.array([1]), np.array([1]))
 if (len(states)!= 2):
     surface_map = False
 
