@@ -49,7 +49,7 @@ def rearrange_cv_and_dv(cvs, dvs, count, size):
     
     return covariance_matrix, displacement_vector
 
-def find_probabilities(states, cutoff, surface_map):
+def find_probabilities(states, cutoff, uint, surface_map):
     MK_dict = {}
     N, cvs, dvs, count = 0, {}, {}, 0
     for cp in states:
@@ -65,7 +65,7 @@ def find_probabilities(states, cutoff, surface_map):
         count += 1
     
     covariance_matrix, displacement_vector = rearrange_cv_and_dv(cvs, dvs, count, size=N)
-    covariance_matrix, displacement_vector = generate_u_cv_and_dv_udag(covariance_matrix, displacement_vector, MK_dict)
+    covariance_matrix, displacement_vector = generate_u_cv_and_dv_udag(covariance_matrix, displacement_vector, MK_dict, uint)
         
     d, del_array, n = 0, np.zeros(N), []
     for key in MK_dict:
@@ -117,19 +117,20 @@ def find_probabilities(states, cutoff, surface_map):
             non_zero_probabilities += 1
             total_probability += instance_probability
             prob_to_display[index] = instance_probability
-    pprint.pprint(prob_to_display)
-    print("Number of non-zero probability states = ", non_zero_probabilities)
-    print("Total Probability = ", total_probability)
+    # pprint.pprint(prob_to_display)
+    # print("Number of non-zero probability states = ", non_zero_probabilities)
+    # print("Total Probability = ", total_probability)
     
     return prob_to_display
 
 
 
-# This code is designed to just take inputs for generating covariance matrices and displacement vectors and feed into the hafnian batched.
-cutoff = 5
-surface_map = True
-states = (np.array([1,1]), np.array([1,1]), np.array([1,1]), np.array([1]), np.array([1]))
-if (len(states)!= 2):
-    surface_map = False
-
-prob_to_display = find_probabilities(states, cutoff, surface_map)
+# # This code is designed to just take inputs for generating covariance matrices and displacement vectors and feed into the hafnian batched.
+# cutoff = 3
+# surface_map = True
+# states = (np.array([1,1]),np.array([1,1]),np.array([1]),np.array([1]),np.array([1]),np.array([1]),np.array([1]),np.array([1]),np.array([1]),np.array([1]),np.array([1]))
+# K = len(states)
+# if (K!= 2):
+#     surface_map = False 
+# uint = np.fft.fft(np.eye(K))/np.sqrt(K)
+# prob_to_display = find_probabilities(states, cutoff, uint, surface_map)

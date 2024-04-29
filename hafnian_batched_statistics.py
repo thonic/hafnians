@@ -42,10 +42,10 @@ def probability(covariance_matrix, displacement_vector, cutoff):
     exp_factor = -0.5 * np.transpose(np.conj(displacement_vector)) @ np.linalg.inv(Q) @ displacement_vector
     exp_norm = cmath.exp(exp_factor)
     
-    hafnians = hafnian_batched(A, cutoff, mu=replacement_vector, renorm=True)
+    hafnians = hafnian_batched(A, cutoff, mu=replacement_vector, renorm=False)
     hafnians = hafnians / cmath.sqrt(detq)
     hafnians = hafnians * exp_norm
-
+    
     return hafnians
 
 

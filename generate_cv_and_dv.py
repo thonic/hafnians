@@ -136,9 +136,8 @@ def generate_cv_and_dv(alpha, K, M, N, single_mode=False):
     return cv, totdv
 
 
-def generate_u_cv_and_dv_udag(cv, dv, MK_dict):
+def generate_u_cv_and_dv_udag(cv, dv, MK_dict, uint):
     K = len(MK_dict)
-    uint = np.fft.fft(np.eye(K))/np.sqrt(K)
     bigu = reshape_mat(uint, MK_dict)
     bigt = block_diag(bigu, np.conjugate(bigu))
     cv = bigt @ cv @ np.conjugate(np.transpose(bigt))
