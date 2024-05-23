@@ -1,3 +1,6 @@
-## Setup
+# Non-Gaussian Boson Sampling
+This Python program allows you to study the interference patterns of a family of non-Gaussian states of light in arbitrary optical networks.
 
-`Python 3.9.7`
+Master's Thesis </br>
+Czech Technical University Prague </br>
+Author: Meet Rajkumar Panchal </br>
