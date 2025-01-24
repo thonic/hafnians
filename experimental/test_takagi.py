@@ -3,6 +3,7 @@ from thewalrus.decompositions import takagi
 import time
 from sympy import symbols, expand, factorial2, Poly
 
+
 def generate_polynomial_and_calculate(G, mu):
 
     # If n is odd, return 0 as specified
@@ -20,7 +21,7 @@ def generate_polynomial_and_calculate(G, mu):
 
     # Convert polynomial to dictionary
     p = Poly(poly, x)  # Polynomial with respect to all x variables
-    #print(f"polynomial: {p}")  # Output the constant term symbolically
+    # print(f"polynomial: {p}")  # Output the constant term symbolically
     terms = p.as_dict()
 
     # Filter terms with even powers only
@@ -62,7 +63,6 @@ if __name__ == "__main__":
                   [4, 7, 9, 10]])
     A = (A + A.T) / 2  # Make it symmetric"""
 
-
     def generate_random_symmetric_matrix(n, r):
         """Generate a symmetric matrix of size n x n with rank r."""
         A = np.random.randn(n, n)
@@ -70,7 +70,6 @@ if __name__ == "__main__":
         U, S, Vt = np.linalg.svd(A)
         S[r:] = 0  # Set singular values beyond rank r to zero
         return U @ np.diag(S) @ Vt  # Reconstruct A
-
 
     # Parameters
     n = 12  # Matrix size
@@ -114,8 +113,6 @@ if __name__ == "__main__":
     timetaken = end_time - start_time
     print("Time taken :", timetaken)
 
-
-
     from thewalrus import loop_hafnian
 
     # Calculate loop Hafnian using thewalrus
@@ -128,8 +125,9 @@ if __name__ == "__main__":
     time_taken2 = end_time2 - start_time2
     print(f" Time_LHaf={time_taken2} seconds")
 
- # Calculate loop Hafnian using thewalrus
+    # Calculate loop Hafnian using thewalrus
     from thewalrus import hafnian
+
     # thewalrus_haf = loop_hafnian(A = A_reconstructed, D=Mu, reps=None, glynn=True)
     hafn = hafnian(A)
     print(f"Hafnian (thewalrus): {hafn}")

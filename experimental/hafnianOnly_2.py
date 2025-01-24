@@ -2,6 +2,7 @@ import numpy as np
 import numpy as np
 from thewalrus.decompositions import takagi
 import time
+
 ##### only thewalrus wont work, you will need to w
 from sympy import symbols, expand, factorial2, Poly
 from sympy import re
@@ -22,13 +23,13 @@ def generate_hafnian(G):
     for i in range(n):
         term = sum(G[i, j] * x[j] for j in range(r))
         poly = expand(poly * term)
-        #print(f"poly: {poly}")  # Output the constant term symbolically
+        # print(f"poly: {poly}")  # Output the constant term symbolically
 
     # Convert polynomial to dictionary
     p = Poly(poly, x)  # Polynomial with respect to all x variables
-    #print(f"polynomial: {p}")  # Output the constant term symbolically
+    # print(f"polynomial: {p}")  # Output the constant term symbolically
     terms = p.as_dict()
-    #print(f"terms: {terms}")  # Output the constant term symbolically
+    # print(f"terms: {terms}")  # Output the constant term symbolically
 
     # Filter terms where sum of exponents is equal to n and each exponent is even
     valid_terms = {k: v for k, v in terms.items() if sum(k) == n and all(exp % 2 == 0 for exp in k)}
@@ -38,15 +39,15 @@ def generate_hafnian(G):
 
     # Perform double factorial computation for each valid term
     for key, coeff in valid_terms.items():
-        #print(f"key: {key}, coeff: {coeff}")  # Output the term (exponent tuple and coefficient)
+        # print(f"key: {key}, coeff: {coeff}")  # Output the term (exponent tuple and coefficient)
 
         # Adjust exponents by subtracting 1
         adjusted_exponents = [exp - 1 for exp in key]
-        #print(f"adjusted_exponents: {adjusted_exponents}")  # Output the adjusted exponents
+        # print(f"adjusted_exponents: {adjusted_exponents}")  # Output the adjusted exponents
 
         # Compute double factorial for adjusted exponents
         double_factorials = [factorial2(exp) if exp >= 0 else 1 for exp in adjusted_exponents]
-        #print(f"double_factorials: {double_factorials}")  # Output the double factorials
+        # print(f"double_factorials: {double_factorials}")  # Output the double factorials
 
         # Multiply the double factorials and coefficient
         term_value = coeff
@@ -66,6 +67,7 @@ def generate_random_symmetric_matrix(n, r):
     U, S, Vt = np.linalg.svd(A)
     S[r:] = 0  # Set singular values beyond rank r to zero
     return U @ np.diag(S) @ Vt  # Reconstruct A
+
 
 # Parameters
 n = 12  # Matrix size
@@ -96,9 +98,9 @@ while True:
         break  # Exit loop if condition is satisfied
 
 datatest = np.load("hafnianOnly_2.npz")
-A = datatest['A']
-G = datatest['G']
-#print(f"G matrix: {G}")
+A = datatest["A"]
+G = datatest["G"]
+# print(f"G matrix: {G}")
 
 # Generate polynomial and calculate the result
 final_result = generate_hafnian(G)
@@ -108,6 +110,7 @@ print("Hafnian__code:", final_result)
 print(f"Process completed in {time.time() - start_time:.2f} seconds.")
 
 from thewalrus import hafnian
+
 # Calculate loop Hafnian using thewalrus
 start_time2 = time.time()
 # thewalrus_haf = loop_hafnian(A = A_reconstructed, D=Mu, reps=None, glynn=True)

@@ -81,7 +81,7 @@ def low_rank_hafnian(G):
         for j in range(r):
             term += G[k, j] * x[j]
         poly = expand(poly * term)
-    #print(f"poly: {poly}")  # Output the constant term symbolically
+    # print(f"poly: {poly}")  # Output the constant term symbolically
 
     # Generate the r-partitions
     comb = partitions(r, n // 2)
@@ -95,7 +95,7 @@ def low_rank_hafnian(G):
         for i, pi in enumerate(c):
             # Construct the monomial for the partition `c`
             monomial *= x[i] ** (2 * pi)
-            #print(f"monomial so far: {monomial}")
+            # print(f"monomial so far: {monomial}")
 
             # Correct factorial calculation, now calculating factorials for non-zero pi values
             if pi > 0:
@@ -105,12 +105,14 @@ def low_rank_hafnian(G):
 
         # After constructing the monomial, extract the coefficient
         coeff = poly.coeff(monomial)
-        #print(f"Extracted coefficient for {monomial}: {coeff}")
+        # print(f"Extracted coefficient for {monomial}: {coeff}")
 
         # Add the weighted coefficient to the hafnian value
         haf_val += complex(coeff * facts)
 
     return haf_val
+
+
 # Example usage:
 def generate_random_symmetric_matrix(n, r):
     """Generate a symmetric matrix of size n x n with rank r."""
@@ -150,8 +152,8 @@ while True:
         break  # Exit loop if condition is satisfied
 
 datatest = np.load("hafnian_lowrank_thewalrus.npz")
-A = datatest['A']
-G = datatest['G']
+A = datatest["A"]
+G = datatest["G"]
 
 # Generate polynomial and calculate the result
 final_result = low_rank_hafnian(G)
@@ -162,11 +164,10 @@ print(f" Time_LHaf={time_taken1} seconds")
 
 # Compare with thewalrus
 from thewalrus import hafnian
+
 start_time2 = time.time()
 hafnian_thewalrus = hafnian(A)
 print(f"Hafnian__thewalrus: {hafnian_thewalrus}")
 end_time2 = time.time()
 time_taken2 = end_time2 - start_time2
 print(f" Time_LHaf={time_taken2} seconds")
-
-

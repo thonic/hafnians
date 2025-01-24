@@ -5,6 +5,7 @@ from sympy import symbols, expand, Poly
 from scipy.special import factorial2
 import time
 
+
 def compute_term_value(key, coeff, G):
     """Compute the value of a term given its exponents, coefficient, and matrix G."""
     # Adjust exponents by subtracting 1
@@ -19,6 +20,7 @@ def compute_term_value(key, coeff, G):
         term_value *= df
 
     return term_value
+
 
 def generate_hafnian(G):
     n, r = G.shape  # Get the dimensions of G
@@ -44,16 +46,16 @@ def generate_hafnian(G):
     valid_terms = {k: v for k, v in terms.items() if sum(k) == n and all(exp % 2 == 0 for exp in k)}
 
     # Parallel computation of term values
-    results = Parallel(n_jobs=-1)(
-        delayed(compute_term_value)(key, coeff, G) for key, coeff in valid_terms.items()
-    )
+    results = Parallel(n_jobs=-1)(delayed(compute_term_value)(key, coeff, G) for key, coeff in valid_terms.items())
 
     # Sum the results
     return sum(results)
 
+
 # Parameters
 n = 12  # Reduced matrix size for debugging
 r = 6  # Reduced rank for debugging
+
 
 def generate_random_symmetric_matrix(n, r):
     """Generate a symmetric matrix of size n x n with rank r."""
@@ -62,6 +64,7 @@ def generate_random_symmetric_matrix(n, r):
     U, S, Vt = np.linalg.svd(A)
     S[r:] = 0  # Set singular values beyond rank r to zero
     return U @ np.diag(S) @ Vt  # Reconstruct A
+
 
 # Generate A and G matrices
 start_time = time.time()
@@ -85,6 +88,7 @@ print(f"Manual computation completed in {end_manual - start_manual:.2f} seconds.
 
 # Validate using The Walrus
 from thewalrus import hafnian
+
 start_walrus = time.time()
 hafnian_walrus = hafnian(A)
 end_walrus = time.time()
