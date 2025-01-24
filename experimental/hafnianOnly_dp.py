@@ -1,64 +1,51 @@
 import numpy as np
-import numpy as np
 from thewalrus.decompositions import takagi
 from thewalrus import hafnian
 import time
-
-##### only thewalrus wont work, you will need to w
-from sympy import symbols, expand, factorial2, Poly
-from sympy import re
+from functools import lru_cache
 
 
-def generate_hafnian(G):
-    n, r = G.shape  # Get the dimensions of G
-
-    # If n is odd, return 0 as specified
+def generate_hafnian_bitmask(G):
+    """
+    Compute the hafnian of A = G G^T using a bitmask-based DP recursion.
+    This typically outperforms explicit enumeration.
+    """
+    n, r = G.shape
     if n % 2 != 0:
-        return 0
+        return 0.0
 
-    # Define symbolic variables x0, x1, ..., xr-1
-    x = symbols(f"x0:{r}")
-    poly = 1.0
+    # Precompute A = G G^T
+    A = G @ G.T
 
-    # Construct the multivariate polynomial
-    for i in range(n):
-        term = sum(G[i, j] * x[j] for j in range(r))
-        poly = expand(poly * term)
-        # print(f"poly: {poly}")  # Output the constant term symbolically
+    @lru_cache(None)
+    def haf_bitmask(mask):
+        # If mask == 0, it means no indices remain, so the matching is complete
+        if mask == 0:
+            return 1.0
 
-    # Convert polynomial to dictionary
-    p = Poly(poly, x)  # Polynomial with respect to all x variables
-    # print(f"polynomial: {p}")  # Output the constant term symbolically
-    terms = p.as_dict()
-    # print(f"terms: {terms}")  # Output the constant term symbolically
+        # Extract the lowest set bit (lowest index in the subset)
+        i = (mask & -mask).bit_length() - 1
 
-    # Filter terms where sum of exponents is equal to n and each exponent is even
-    valid_terms = {k: v for k, v in terms.items() if sum(k) == n and all(exp % 2 == 0 for exp in k)}
+        res = 0.0
+        # Remove i from the subset
+        mask_without_i = mask ^ (1 << i)
 
-    # Initialize the result
-    result = 0
+        # Try pairing i with each j in mask_without_i
+        sub = mask_without_i
+        while sub != 0:
+            # Extract the lowest set bit from sub
+            j = (sub & -sub).bit_length() - 1
+            # Remove j from sub
+            sub = sub ^ (1 << j)
 
-    # Perform double factorial computation for each valid term
-    for key, coeff in valid_terms.items():
-        # print(f"key: {key}, coeff: {coeff}")  # Output the term (exponent tuple and coefficient)
+            # Add A[i,j] times the recursion with i and j removed
+            res += A[i, j] * haf_bitmask(mask_without_i ^ (1 << j))
 
-        # Adjust exponents by subtracting 1
-        adjusted_exponents = [exp - 1 for exp in key]
-        # print(f"adjusted_exponents: {adjusted_exponents}")  # Output the adjusted exponents
+        return res
 
-        # Compute double factorial for adjusted exponents
-        double_factorials = [factorial2(exp) if exp >= 0 else 1 for exp in adjusted_exponents]
-        # print(f"double_factorials: {double_factorials}")  # Output the double factorials
-
-        # Multiply the double factorials and coefficient
-        term_value = coeff
-        for df in double_factorials:
-            term_value *= df
-
-        # Add to the result
-        result += term_value
-
-    return result
+    # Initially, all n indices (bits) are set: mask = (1 << n) - 1
+    full_mask = (1 << n) - 1
+    return haf_bitmask(full_mask)
 
 
 def generate_random_symmetric_matrix(n, r):
@@ -104,8 +91,8 @@ G = datatest["G"]
 # print(f"G matrix: {G}")
 
 # Generate polynomial and calculate the result
-final_result = generate_hafnian(G)
-print("Hafnian__code:", final_result)
+my_haf = generate_hafnian_bitmask(G)
+print("Hafnian__code:", my_haf)
 
 # Output timing
 print(f"Process completed in {time.time() - start_time:.2f} seconds.")
