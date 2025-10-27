@@ -3,9 +3,7 @@ from typing import Optional, Dict
 from sympy.matrices.common import NonInvertibleMatrixError
 from thewalrus import hafnian as hafnian_thewalrus
 
-# --------------------------
-# Define sigma and M outside
-# --------------------------
+
 r = sp.symbols('r', real=True)
 I2 = sp.eye(2)
 
