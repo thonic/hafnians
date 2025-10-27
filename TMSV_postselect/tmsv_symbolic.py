@@ -19,7 +19,6 @@ u_h = (1/sp.sqrt(2)) * sp.Matrix([[1, 1],
                                   [1, -1]])
 
 # 50/50 Beam Splitter with phase (Hadamard + π/2 phase shift)
-# NOTE: This leaves TMSV unchanged due to symmetry!
 u_bs = (1/sp.sqrt(2)) * sp.Matrix([[1, sp.I],
                                    [sp.I, 1]])
 
@@ -40,20 +39,20 @@ sigma_p_block = sp.BlockMatrix([[C, S],
 sigma_p = sigma_p_block.as_explicit()
 
 if use_unitary:
-    # ---- build big U in v-ordering (alpha, beta, alpha*, beta*) ----
+    # build big U in v-ordering (alpha, beta, alpha*, beta*) ----
     U_v = sp.BlockMatrix([[u,              sp.ZeroMatrix(2,2)],
                           [sp.ZeroMatrix(2,2),    u.conjugate()]])
     
-    # ---- permutation P: v_p = P * v  (maps (alpha, beta, alpha*, beta*) -> (alpha, alpha*, beta, beta*)) ----
+    # permutation P: v_p = P * v  (maps (alpha, beta, alpha*, beta*) -> (alpha, alpha*, beta, beta*))
     P = sp.Matrix([[1, 0, 0, 0],
                    [0, 0, 1, 0],
                    [0, 1, 0, 0],
                    [0, 0, 0, 1]])
     
-    # ---- permute the unitary into v_p ordering ----
+    # permute the unitary into v_p ordering ----
     U_p = P * U_v.as_explicit() * P.T
     
-    # ---- active state transformation in v_p ordering: σ'_p = U_p^† σ_p U_p ----
+    # active state transformation in v_p ordering: σ'_p = U_p^† σ_p U_p ----
     sigma = sp.simplify(U_p.H * sigma_p * U_p)
 else:
     # Original behavior: no transformation
@@ -69,20 +68,11 @@ M = M_block.as_explicit()
 # ---------------------------------------
 def hafnian_symbolic(A):
     """
-    Compute hafnian of a symbolic matrix A using recursion.
-    
-    For a matrix A (n×n where n is even), hafnian is:
-    haf(A) = sum over all perfect matchings of product of matched elements
-    
-    Args:
-        A: sympy Matrix (n×n, symmetric)
-    
-    Returns:
         Symbolic expression for hafnian
     """
     n = A.shape[0]
     
-    # Base case: empty matrix
+    # empty matrix
     if n == 0:
         return sp.Integer(1)
     
@@ -90,7 +80,7 @@ def hafnian_symbolic(A):
     if n % 2 != 0:
         return sp.Integer(0)
     
-    # Base case: 2×2 matrix
+    # 2×2 matrix
     if n == 2:
         return A[0, 1]
     
@@ -112,9 +102,9 @@ def hafnian_symbolic(A):
     
     return sp.simplify(result)
 
-# ---------------------------------------
-# Function: derive blocks from σ and M
-# ---------------------------------------
+
+# M blocks from σ and M
+
 def derive_M_blocks_from_inputs(sigma_in: sp.Matrix,
                                 M_in: sp.Matrix,
                                 block_dim: int = 2):
@@ -137,9 +127,7 @@ def derive_M_blocks_from_inputs(sigma_in: sp.Matrix,
     # Effective matrix
     sigma_eff = sp.simplify(sigma_in - M_in)
 
-    # Slice 2x2 blocks (aa, ab, bb). Support two representations:
-    #  1) 4x4 explicit matrices (use slicing)
-    #  2) 2x2 matrix of 2x2 blocks (use [i,j] block access)
+    
     if sigma_eff.shape == (2, 2) and isinstance(sigma_eff[0, 0], sp.MatrixBase):
         aa = sigma_eff[0, 0]
         ab = sigma_eff[0, 1]
@@ -149,40 +137,30 @@ def derive_M_blocks_from_inputs(sigma_in: sp.Matrix,
         ab = sigma_eff[:block_dim, block_dim:2*block_dim]
         bb = sigma_eff[block_dim:2*block_dim, block_dim:2*block_dim]
 
-    # Identify the coefficient blocks (choose + sign for cross term)
+    
     M_alpha      = sp.simplify( aa / 2 )
     M_beta       = sp.simplify( bb / 2 )
     M_alpha_beta = sp.simplify( ab / 2 )
 
     return M_alpha, M_beta, M_alpha_beta, sigma_eff, sigma_in, M_in
 
-# ---------------------------------------
-# Function: compute B, C, and gamma
-# ---------------------------------------
+
+# compute B, C, and gamma
+
 def compute_B_C_gamma(M_alpha_beta: sp.Matrix,
                       M_beta: sp.Matrix,
                       alpha: sp.Matrix,
                       zeta: sp.Matrix):
-    """
-    Compute B, C_row, and exponent for displacement terms.
-    
-    From the images:
-    B = (M_αβ α - iζ/2)
-    C = (α† M_αβ† - iζ†/2)
-    γ = exp[C M_β⁻¹ B + ¼ (C – B†) M_β⁻¹ (C – B†)†]
-    
-    Returns: B, C_row, exponent
-    """
+   
     half = sp.Rational(1, 2)
     i = sp.I
     
-    # Correct definitions from images
     B = M_alpha_beta * alpha - i * half * zeta
     C_row = (alpha.H * M_alpha_beta.H) - i * half * zeta.H
     
     M_beta_inv = M_beta.inv()
     
-    # γ = exp[C M_β⁻¹ B + ¼ (C – B†) M_β⁻¹ (C – B†)†]
+    # gamma = exp[C M_β⁻¹ B + ¼ (C – B†) M_β⁻¹ (C – B†)†], exponent of this gamma we are computing
     term1 = (C_row * M_beta_inv * B)[0, 0]  # C M_β⁻¹ B
     diff = C_row - B.H  # (C – B†)
     term2 = sp.Rational(1, 4) * (diff * M_beta_inv * diff.H)[0, 0]  # ¼ (C – B†) M_β⁻¹ (C – B†)†
@@ -190,37 +168,33 @@ def compute_B_C_gamma(M_alpha_beta: sp.Matrix,
     exponent = sp.simplify(term1 + term2)
     return B, C_row, exponent
 
-# ---------------------------------------
-# Function: build Mat for Z=[zeta; zeta*] and its hafnian
-# ---------------------------------------
+
+#  build Mat for Z=[zeta; zeta*] and compute its hafnian, where exp(exponent) is gamma
+
 def compute_mat_and_hafnian(M_alpha: sp.Matrix,
                             M_beta: sp.Matrix,
                             M_alpha_beta: sp.Matrix,
                             alpha: sp.Matrix,
                             zeta: sp.Matrix):
     """
-    Build Mat from exp(ζ†ζ) · exp(-α†M_alpha α) · exp(exponent),
-    compute hafnian(Mat), and normalize by sqrt(det(M_beta)).
+    Build Mat from exp(ζ†ζ) · exp(-alpha† M_alpha alpha) · exp(exponent),
+    compute hafnian(Mat), and divide by sqrt(det(M_beta)) according to theory.
     
     Expands into: 1/2 Z^T Mat Z where Z = [alpha, alpha*, zeta, zeta*]
     
     Returns: Mat, haf_value, det_M_beta, result
     """
-    # Get exponent from compute_B_C_gamma
+    
     B, C_row, exponent_gamma = compute_B_C_gamma(M_alpha_beta, M_beta, alpha, zeta)
     
-    # Build total exponent = ζ†ζ - α†M_alpha α + exponent_gamma
+    
     zeta_dag_zeta = sp.expand((zeta.H * zeta)[0,0])
     alpha_dag_M_alpha_alpha = sp.expand(-(alpha.H * M_alpha * alpha)[0,0])
     total_exponent = sp.expand(zeta_dag_zeta + alpha_dag_M_alpha_alpha + exponent_gamma)
     
-    # Build Z = [alpha; zeta] - concatenate the mode vectors
     Z = sp.Matrix.vstack(alpha, zeta)
     n = len(Z)  # Derive dimension from Z
     
-    # Extract Mat from: total_exponent = 1/2 Z^T Mat Z
-    # Therefore: 2 * total_exponent = Z^T Mat Z
-    # Mat[i,j] = coefficient of Z[i] * conjugate(Z[j]) in (2 * total_exponent)
     Mat = sp.zeros(n, n)
     expanded_for_extraction = sp.expand(2 * total_exponent)
     
@@ -298,10 +272,4 @@ if __name__ == "__main__":
     
     print("\nResult: Hafnian(Mat) / sqrt(det(M_beta)) =")
     sp.pprint(result)
-
-# This module is self-contained and exposes the following functions:
-# - hafnian_symbolic(A) - General symbolic hafnian calculator
-# - derive_M_blocks_from_inputs(sigma, M) - Extract M_alpha, M_beta, M_alpha_beta
-# - compute_B_C_gamma(M_alpha_beta, M_beta, alpha, zeta) - Compute displacement terms
-# - compute_mat_and_hafnian(M_alpha, M_beta, M_alpha_beta, alpha, zeta) - Main calculation
 
