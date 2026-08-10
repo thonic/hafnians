@@ -41,6 +41,7 @@ def build_B_mu_scale(
     *,
     J: int | None = None,
     interferometer: str | None = None,
+    haar_seed: int | None = None,
 ):
     """
     Fiurášek copies ``states`` (one cp array per copy), Haar-random unitary on signal modes (or identity).
@@ -56,7 +57,12 @@ def build_B_mu_scale(
 
     mode = interferometer if interferometer is not None else config.INTERFEROMETER
     if mode == "haar" and J > 1:
-        uint = _haar_unitary(J, config.HAAR_RANDOM_SEED)
+        seed = int(
+            haar_seed
+            if haar_seed is not None
+            else config.HAAR_BASE_SEED
+        )
+        uint = _haar_unitary(J, seed)
     elif mode == "identity" or J <= 1:
         uint = np.eye(J, dtype=np.complex128)
     else:

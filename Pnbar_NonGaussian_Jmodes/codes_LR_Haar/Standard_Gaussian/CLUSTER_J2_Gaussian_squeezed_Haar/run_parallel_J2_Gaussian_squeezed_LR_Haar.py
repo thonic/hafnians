@@ -38,6 +38,7 @@ for p in (str(SG_ROOT), str(LR_ROOT)):
     if p not in sys.path:
         sys.path.insert(0, p)
 
+import ensemble_common as eco  # noqa: E402
 from lowrank.cluster_reps import expand_rows  # noqa: E402
 from lowrank.lr_production_kernel import takagi_factor_b_mat  # noqa: E402
 from walrus_low_rank_hafnian import (  # noqa: E402
@@ -90,18 +91,33 @@ def run(
     workers: int | None = None,
     cutoff: int | None = None,
     J: int | None = None,
-) -> dict:
+    haar_seed: int | None = None,
+    out_json: Path | None = None,
+    skip_existing: bool = False,
+) -> dict | None:
     J = int(J if J is not None else config.J)
     cutoff = int(cutoff if cutoff is not None else config.CUTOFF)
     n_workers = resolve_workers(workers)
     patterns = list(itertools.product(*[range(cutoff) for _ in range(J)]))
     n_patterns = len(patterns)
 
+    seed = int(
+        haar_seed if haar_seed is not None else eco.haar_base_seed(config)
+    )
+    save_tol = eco.zero_save_tol(config)
+
+    if skip_existing and out_json is not None and eco.is_valid_realization(
+        out_json, expected_seed=seed
+    ):
+        print(f"SKIP existing valid realization: {out_json}")
+        return None
+
     print("=" * 60)
     print(f"Cluster LR: J={J}  state={config.STATE}")
     print("=" * 60)
     print(f"  cutoff    : {cutoff}  →  {n_patterns} configurations")
     print(f"  Interferometer : {config.INTERFEROMETER}")
+    print(f"  Haar seed : {seed}")
     print(f"  workers   : {n_workers}")
     print(f"  engine    : {ENGINE}")
     print(f"  squeeze_r : {config.SQUEEZE_R:.6f}  (sinh(r)=1)")
@@ -112,7 +128,7 @@ def run(
     t0 = time.perf_counter()
     print("Building (B, μ, scale) + Takagi G once ...", flush=True)
     b_mat, mu, scale, MK_dict = build_B_mu_scale(
-        config.CP, J=J, interferometer=config.INTERFEROMETER
+        config.CP, J=J, interferometer=config.INTERFEROMETER, haar_seed=seed
     )
     G = takagi_factor_b_mat(b_mat)
     t_build = time.perf_counter() - t0
@@ -140,12 +156,14 @@ def run(
     t_haf = time.perf_counter() - t1
     total_raw = float(sum(raw.values()))
     probs = {k: float(v / total_raw) for k, v in raw.items()} if total_raw > 0.0 else {}
-    active = {k: v for k, v in probs.items() if v >= config.ZERO_TOL}
+    sparse = eco.sparse_probability_list(probs, tol=save_tol)
+    sum_p = eco.sum_sparse(sparse)
     t_total = time.perf_counter() - t0
 
     print(f"  hafnian wall time = {t_haf:.3f} s", flush=True)
     print(f"  Σ raw             = {total_raw:.6e}")
-    print(f"  nonzero (tol)     = {len(active)} / {n_patterns}")
+    print(f"  sparse entries    = {len(sparse)} / {n_patterns}  (tol={save_tol:g})")
+    print(f"  sum_P (sparse)    = {sum_p:.16f}")
     print(f"  total wall time   = {t_total:.3f} s")
 
     result = {
@@ -158,7 +176,8 @@ def run(
         "n_patterns": n_patterns,
         "n_workers": n_workers,
         "interferometer": config.INTERFEROMETER,
-        "haar_random_seed": config.HAAR_RANDOM_SEED,
+        "seed": seed,
+        "haar_base_seed": eco.haar_base_seed(config),
         "engine": ENGINE,
         "B_shape": list(b_mat.shape),
         "takagi_rank": int(G.shape[1]),
@@ -169,27 +188,33 @@ def run(
             "total": t_total,
         },
         "total_raw_before_renorm": total_raw,
-        "sum_P": float(sum(active.values())),
-        "probabilities": {str(k): float(v) for k, v in sorted(active.items())},
-        "zero_tol": config.ZERO_TOL,
+        "sum_P": sum_p,
+        "probabilities": sparse,
+        "zero_save_tol": save_tol,
     }
+
+    if out_json is not None:
+        json_path = Path(out_json)
+        eco.write_json_atomic(json_path, result)
+        print(f"\nWrote {json_path}")
+        return result
 
     out_dir = HERE / config.OUTPUT_DIRNAME
     out_dir.mkdir(parents=True, exist_ok=True)
     json_path = out_dir / config.RESULT_JSON
     txt_path = out_dir / config.RESULT_TXT
-    json_path.write_text(json.dumps(result, indent=2), encoding="utf-8")
+    eco.write_json_atomic(json_path, result)
 
     lines = [
-        f"J={J} {config.STATE} — parallel per-pattern Walrus low-rank hafnian",
-        f"workers={n_workers}  takagi_rank={G.shape[1]}  sinh(r)=1",
+        f"J={J} {config.STATE} — Haar sparse P(n̄)",
+        f"seed={seed}  workers={n_workers}  takagi_rank={G.shape[1]}",
         f"build={t_build:.3f}s  hafnian={t_haf:.3f}s  total={t_total:.3f}s",
-        f"sum_P={result['sum_P']:.8f}",
+        f"sum_P={sum_p:.8f}  sparse={len(sparse)}/{n_patterns}",
         "",
         "nbar  P",
     ]
-    for nbar, p in sorted(active.items(), key=lambda kv: -kv[1]):
-        lines.append(f"{nbar}  {p:.8e}")
+    for nbar, p in sparse:
+        lines.append(f"{tuple(nbar)}  {p:.8e}")
     txt_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     print(f"\nWrote {json_path}")
@@ -204,8 +229,9 @@ def main() -> None:
     parser.add_argument("--workers", type=int, default=None)
     parser.add_argument("--cutoff", type=int, default=None)
     parser.add_argument("--J", type=int, default=None)
+    parser.add_argument("--haar-seed", type=int, default=None)
     args = parser.parse_args()
-    run(workers=args.workers, cutoff=args.cutoff, J=args.J)
+    run(workers=args.workers, cutoff=args.cutoff, J=args.J, haar_seed=args.haar_seed)
 
 
 if __name__ == "__main__":

@@ -41,7 +41,7 @@ codes_LR_Haar/
 Each `CLUSTER_*_Haar/` folder is a self-contained cluster job:
 
 - `run_parallel_J2_even_cat_LR_Haar.py`, `submit_J2_even_cat_LR_Haar.slurm`
-- `config.py`: `INTERFEROMETER`, `HAAR_RANDOM_SEED`, state parameters
+- `config.py`: `INTERFEROMETER`, `HAAR_BASE_SEED`, `N_ENSEMBLE`, state parameters
 - `output/Pnbar_*.json`
 
 Runners add the parent tree to `sys.path` (`HERE.parent` from a state folder).
@@ -87,3 +87,38 @@ python codes_LR_Haar/validate_j4_geometry_A.py
 - Edit parallel logic: `_lr_run_parallel_j2.py` / `_j4.py` → `sync_from_walrus_cluster.py`
 - Edit Walrus physics in repo `CLUSTER_*` → sync Haar folders from Walrus templates
 - Do **not** edit `codes_LR/` when working on Haar — keep the sibling reference tree frozen
+
+
+## Haar ensemble (cluster)
+
+All ensemble knobs live in **each job's `config.py` only**:
+
+```python
+HAAR_BASE_SEED = 20250810
+N_ENSEMBLE = 10          # <-- Change ONLY this to 1000 for production
+ENSEMBLE_BATCH_SIZE = 10
+ZERO_SAVE_TOL = 1e-10
+```
+
+Submit via the wrapper (array range is derived from `config.py` — do not edit `#PBS -J` by hand):
+
+```bash
+cd CLUSTER_J2_even_cat_LR_Haar
+mkdir -p logs output
+./submit_ensemble.sh
+# or locally (runs all N_ENSEMBLE from config):
+python run_ensemble.py --workers 8
+```
+
+Outputs (folder name embeds `N_ENSEMBLE` and `HAAR_BASE_SEED`):
+
+```text
+output/ensemble/R10_base20250810/seed_000000.json   # pilot
+output/ensemble/R1000_base20250810/seed_000042.json  # after N_ENSEMBLE=1000
+```
+
+Each JSON stores **sparse** `P(n̄)` (`ZERO_SAVE_TOL`) plus metadata (`seed`, `interferometer`, …).
+Seed rule: `seed = HAAR_BASE_SEED + realization_index`.
+Correlations / ensemble statistics are **not** computed on the cluster.
+
+Pilot → production: change **only** `N_ENSEMBLE` in each `config.py`, then `./submit_ensemble.sh` again.

@@ -10,7 +10,11 @@ INPUT_NMAX = 5
 J = 4
 CUTOFF = 6
 INTERFEROMETER = "haar"
-HAAR_RANDOM_SEED = 20250810
+HAAR_BASE_SEED = 20250810
+HAAR_RANDOM_SEED = HAAR_BASE_SEED  # single-shot alias
+N_ENSEMBLE = 10          # <-- Change ONLY this to 1000 for production
+ENSEMBLE_BATCH_SIZE = 10  # realizations per PBS array task
+ZERO_SAVE_TOL = 1e-10  # sparse P(n̄) storage threshold
 N_WORKERS: int | None = None
 ZERO_TOL = 1e-8
 
