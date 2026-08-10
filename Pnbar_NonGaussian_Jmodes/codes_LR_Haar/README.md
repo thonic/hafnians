@@ -1,0 +1,89 @@
+# Low-rank cluster jobs — Haar interferometer (`codes_LR_Haar`)
+
+> **Haar interferometer project:** Self-contained low-rank `P(n̄)` cluster jobs with a
+> Haar-random passive unitary on signal modes (`INTERFEROMETER = "haar"` in each job's
+> `config.py`). Set `INTERFEROMETER = "identity"` to skip mode mixing. The Fiurášek
+> preparation, geometry construction, low-rank kernel, and hafnian evaluation are unchanged
+> from the parent low-rank pipeline.
+
+**Self-contained for Cerit:** rsync **only this folder** (e.g. `deepti/codes_LR_Haar/`).  
+Low-rank math lives in **`codes_LR_Haar/lowrank/`** (not `probability_nbar_J2`).
+
+Walrus reference jobs remain in repo-root `CLUSTER_J2_*` / `CLUSTER_J4_*`.  
+Verified reference outputs from the sibling tree stay in **`codes_LR/`** only.
+
+## Layout
+
+```text
+codes_LR_Haar/
+  lowrank/                          # cluster kernel (Numba rank 1–4)
+    fast_loop_hafnian.py
+    lr_production_kernel.py
+    cluster_reps.py
+  _lr_run_parallel_j2.py              # template → copied into each J=2 folder
+  _lr_run_parallel_j4.py
+  sync_from_walrus_cluster.py
+  sync_lowrank_kernel.py              # refresh fast_loop from laptop P(n̄) tree
+  validate_j2_all.py
+  validate_j4_geometry_A.py
+  CLUSTER_J2_superposition_LR_Haar/
+  CLUSTER_J2_even_cat_LR_Haar/
+  CLUSTER_J2_odd_cat_LR_Haar/
+  CLUSTER_J2_Kerr_squeezed_Haar/
+  CLUSTER_J4_even_cat_LR_Haar/
+  CLUSTER_J4_odd_cat_LR_Haar/
+  CLUSTER_J4_Kerr_squeezed_Haar/
+  Standard_Gaussian/
+    CLUSTER_J2_Gaussian_squeezed_Haar/
+    CLUSTER_J4_Gaussian_squeezed_Haar/
+```
+
+Each `CLUSTER_*_Haar/` folder is a self-contained cluster job:
+
+- `run_parallel_J2_even_cat_LR_Haar.py`, `submit_J2_even_cat_LR_Haar.slurm`
+- `config.py`: `INTERFEROMETER`, `HAAR_RANDOM_SEED`, state parameters
+- `output/Pnbar_*.json`
+
+Runners add the parent tree to `sys.path` (`HERE.parent` from a state folder).
+
+## Cerit rsync (one tree)
+
+```bash
+rsync -avz codes_LR_Haar/  user@zenith:~/deepti/codes_LR_Haar/
+```
+
+Then:
+
+```bash
+cd ~/deepti/codes_LR_Haar/CLUSTER_J2_superposition_LR_Haar
+mkdir -p logs output && qsub submit_J2_superposition_LR_Haar.slurm
+```
+
+The Kerr-squeezed jobs use `κ=0.1`, `sinh(r)=1`
+(`r=arcsinh(1)≈0.8814`), `INPUT_NMAX=5`, and output cutoff 6. Submit them
+from their cluster folders in the same way:
+
+```bash
+cd ~/deepti/codes_LR_Haar/CLUSTER_J2_Kerr_squeezed_Haar
+qsub submit_J2_Kerr_squeezed_LR_Haar.slurm
+```
+
+## After changing rank-4 / Takagi on laptop
+
+```bash
+python codes_LR_Haar/sync_lowrank_kernel.py
+python codes_LR_Haar/sync_from_walrus_cluster.py   # if cluster runners changed
+```
+
+## Local validation
+
+```bash
+python codes_LR_Haar/validate_j2_all.py
+python codes_LR_Haar/validate_j4_geometry_A.py
+```
+
+## Maintenance
+
+- Edit parallel logic: `_lr_run_parallel_j2.py` / `_j4.py` → `sync_from_walrus_cluster.py`
+- Edit Walrus physics in repo `CLUSTER_*` → sync Haar folders from Walrus templates
+- Do **not** edit `codes_LR/` when working on Haar — keep the sibling reference tree frozen
