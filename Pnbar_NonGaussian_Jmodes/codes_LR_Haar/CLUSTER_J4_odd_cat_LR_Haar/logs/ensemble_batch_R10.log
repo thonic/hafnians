@@ -1,0 +1,363 @@
+HOST=elmo4-2.hw.elixir-czech.cz  JOB=22822929.pbs-m1.metacentrum.cz  ARRAY=0  CPUS=8  ENGINE=haar_ensemble
+Ensemble batch J=4: n=10 geometries=('A', 'B', 'C') batch_index=0
+[000000/A] RUN  seed=20250810 -> seed_000000_geomA.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250810
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.120 s
+  hafnian wall time = 12.028 s  sum_P=1.000000  sparse=337/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000000_geomA.json
+[000000/B] RUN  seed=20250810 -> seed_000000_geomB.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250810
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.005 s
+  hafnian wall time = 8.852 s  sum_P=1.000000  sparse=335/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000000_geomB.json
+[000000/C] RUN  seed=20250810 -> seed_000000_geomC.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250810
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.005 s
+  hafnian wall time = 8.822 s  sum_P=1.000000  sparse=340/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000000_geomC.json
+[000001/A] RUN  seed=20250811 -> seed_000001_geomA.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250811
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 8.644 s  sum_P=1.000000  sparse=351/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000001_geomA.json
+[000001/B] RUN  seed=20250811 -> seed_000001_geomB.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250811
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 8.642 s  sum_P=1.000000  sparse=361/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000001_geomB.json
+[000001/C] RUN  seed=20250811 -> seed_000001_geomC.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250811
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 8.774 s  sum_P=1.000000  sparse=370/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000001_geomC.json
+[000002/A] RUN  seed=20250812 -> seed_000002_geomA.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250812
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 8.720 s  sum_P=1.000000  sparse=351/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000002_geomA.json
+[000002/B] RUN  seed=20250812 -> seed_000002_geomB.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250812
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 8.542 s  sum_P=1.000000  sparse=364/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000002_geomB.json
+[000002/C] RUN  seed=20250812 -> seed_000002_geomC.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250812
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 8.761 s  sum_P=1.000000  sparse=355/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000002_geomC.json
+[000003/A] RUN  seed=20250813 -> seed_000003_geomA.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250813
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 8.978 s  sum_P=1.000000  sparse=329/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000003_geomA.json
+[000003/B] RUN  seed=20250813 -> seed_000003_geomB.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250813
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.005 s
+  hafnian wall time = 8.935 s  sum_P=1.000000  sparse=310/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000003_geomB.json
+[000003/C] RUN  seed=20250813 -> seed_000003_geomC.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250813
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 9.827 s  sum_P=1.000000  sparse=363/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000003_geomC.json
+[000004/A] RUN  seed=20250814 -> seed_000004_geomA.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250814
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 9.943 s  sum_P=1.000000  sparse=335/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000004_geomA.json
+[000004/B] RUN  seed=20250814 -> seed_000004_geomB.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250814
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 9.986 s  sum_P=1.000000  sparse=351/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000004_geomB.json
+[000004/C] RUN  seed=20250814 -> seed_000004_geomC.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250814
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 8.744 s  sum_P=1.000000  sparse=360/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000004_geomC.json
+[000005/A] RUN  seed=20250815 -> seed_000005_geomA.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250815
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 8.855 s  sum_P=1.000000  sparse=376/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000005_geomA.json
+[000005/B] RUN  seed=20250815 -> seed_000005_geomB.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250815
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.005 s
+  hafnian wall time = 8.364 s  sum_P=1.000000  sparse=361/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000005_geomB.json
+[000005/C] RUN  seed=20250815 -> seed_000005_geomC.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250815
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 8.271 s  sum_P=1.000000  sparse=340/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000005_geomC.json
+[000006/A] RUN  seed=20250816 -> seed_000006_geomA.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250816
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.005 s
+  hafnian wall time = 8.444 s  sum_P=1.000000  sparse=314/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000006_geomA.json
+[000006/B] RUN  seed=20250816 -> seed_000006_geomB.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250816
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 8.458 s  sum_P=1.000000  sparse=368/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000006_geomB.json
+[000006/C] RUN  seed=20250816 -> seed_000006_geomC.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250816
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.005 s
+  hafnian wall time = 8.598 s  sum_P=1.000000  sparse=373/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000006_geomC.json
+[000007/A] RUN  seed=20250817 -> seed_000007_geomA.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250817
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.007 s
+  hafnian wall time = 9.080 s  sum_P=1.000000  sparse=299/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000007_geomA.json
+[000007/B] RUN  seed=20250817 -> seed_000007_geomB.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250817
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 8.830 s  sum_P=1.000000  sparse=375/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000007_geomB.json
+[000007/C] RUN  seed=20250817 -> seed_000007_geomC.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250817
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 8.473 s  sum_P=1.000000  sparse=357/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000007_geomC.json
+[000008/A] RUN  seed=20250818 -> seed_000008_geomA.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250818
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.005 s
+  hafnian wall time = 8.474 s  sum_P=1.000000  sparse=338/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000008_geomA.json
+[000008/B] RUN  seed=20250818 -> seed_000008_geomB.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250818
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 8.664 s  sum_P=1.000000  sparse=275/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000008_geomB.json
+[000008/C] RUN  seed=20250818 -> seed_000008_geomC.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250818
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.005 s
+  hafnian wall time = 8.812 s  sum_P=1.000000  sparse=349/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000008_geomC.json
+[000009/A] RUN  seed=20250819 -> seed_000009_geomA.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250819
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.005 s
+  hafnian wall time = 8.845 s  sum_P=1.000000  sparse=377/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000009_geomA.json
+[000009/B] RUN  seed=20250819 -> seed_000009_geomB.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250819
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 8.896 s  sum_P=1.000000  sparse=376/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000009_geomB.json
+[000009/C] RUN  seed=20250819 -> seed_000009_geomC.json
+============================================================
+Cluster LR: J=4  state=odd_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250819
+
+  B shape = (14, 14), Takagi rank = 4, build = 0.005 s
+  hafnian wall time = 8.651 s  sum_P=1.000000  sparse=288/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_odd_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000009_geomC.json
+Batch finished: ran=30 skipped=0

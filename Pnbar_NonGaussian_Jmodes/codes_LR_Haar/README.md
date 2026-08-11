@@ -20,19 +20,26 @@ codes_LR_Haar/
     fast_loop_hafnian.py
     lr_production_kernel.py
     cluster_reps.py
+  ensemble_common.py
+  helping_code_doc_Haar_parallel_architecture.md
   _lr_run_parallel_j2.py              # template → copied into each J=2 folder
   _lr_run_parallel_j4.py
   sync_from_walrus_cluster.py
   sync_lowrank_kernel.py              # refresh fast_loop from laptop P(n̄) tree
   validate_j2_all.py
   validate_j4_geometry_A.py
+  # J=2 (6 jobs)
   CLUSTER_J2_superposition_LR_Haar/
   CLUSTER_J2_even_cat_LR_Haar/
   CLUSTER_J2_odd_cat_LR_Haar/
   CLUSTER_J2_Kerr_squeezed_Haar/
+  CLUSTER_J2_Kerr_squeezed_kappa_1_Haar/
+  # J=4 (6 jobs)
+  CLUSTER_J4_superposition_LR_Haar/
   CLUSTER_J4_even_cat_LR_Haar/
   CLUSTER_J4_odd_cat_LR_Haar/
   CLUSTER_J4_Kerr_squeezed_Haar/
+  CLUSTER_J4_Kerr_squeezed_kappa_1_Haar/
   Standard_Gaussian/
     CLUSTER_J2_Gaussian_squeezed_Haar/
     CLUSTER_J4_Gaussian_squeezed_Haar/
@@ -95,7 +102,7 @@ All ensemble knobs live in **each job's `config.py` only**:
 
 ```python
 HAAR_BASE_SEED = 20250810
-N_ENSEMBLE = 10          # <-- Change ONLY this to 1000 for production
+N_ENSEMBLE = 1000         # production ensemble size
 ENSEMBLE_BATCH_SIZE = 10
 ZERO_SAVE_TOL = 1e-10
 ```
@@ -113,8 +120,8 @@ python run_ensemble.py --workers 8
 Outputs (folder name embeds `N_ENSEMBLE` and `HAAR_BASE_SEED`):
 
 ```text
-output/ensemble/R10_base20250810/seed_000000.json   # pilot
-output/ensemble/R1000_base20250810/seed_000042.json  # after N_ENSEMBLE=1000
+output/ensemble/R10_base20250810/seed_000000.json    # pilot (if retained)
+output/ensemble/R1000_base20250810/seed_000042.json  # production
 ```
 
 Each JSON stores **sparse** `P(n̄)` (`ZERO_SAVE_TOL`) plus metadata (`seed`, `interferometer`, …).
@@ -122,3 +129,4 @@ Seed rule: `seed = HAAR_BASE_SEED + realization_index`.
 Correlations / ensemble statistics are **not** computed on the cluster.
 
 Pilot → production: change **only** `N_ENSEMBLE` in each `config.py`, then `./submit_ensemble.sh` again.
+Production is currently set to `N_ENSEMBLE = 1000`.

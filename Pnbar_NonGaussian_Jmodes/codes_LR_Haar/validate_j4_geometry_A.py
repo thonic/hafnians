@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""LR vs Walrus on J=4 geometry A (1296 patterns) for even + odd cat LR folders."""
+"""LR vs Walrus on J=4 geometry A (1296 patterns) for even/odd cat + superposition."""
 
 from __future__ import annotations
 
@@ -53,7 +53,11 @@ def check(folder: str) -> dict:
 
 
 def main() -> None:
-    for folder in ("CLUSTER_J4_even_cat_LR_Haar", "CLUSTER_J4_odd_cat_LR_Haar"):
+    for folder in (
+        "CLUSTER_J4_even_cat_LR_Haar",
+        "CLUSTER_J4_odd_cat_LR_Haar",
+        "CLUSTER_J4_superposition_LR_Haar",
+    ):
         print(check(folder))
 
 

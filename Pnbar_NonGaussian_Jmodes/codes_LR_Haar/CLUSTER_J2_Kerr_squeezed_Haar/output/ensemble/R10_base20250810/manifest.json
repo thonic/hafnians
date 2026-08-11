@@ -1,0 +1,12 @@
+{
+  "generated_utc": "2026-08-10T14:51:16.510649+00:00",
+  "state": "kerr_squeezed",
+  "J": 2,
+  "cutoff": 6,
+  "interferometer": "haar",
+  "haar_base_seed": 20250810,
+  "n_ensemble": 10,
+  "ensemble_batch_size": 10,
+  "zero_save_tol": 1e-10,
+  "note": "Sparse P(n\u0304) only; correlations computed offline."
+}

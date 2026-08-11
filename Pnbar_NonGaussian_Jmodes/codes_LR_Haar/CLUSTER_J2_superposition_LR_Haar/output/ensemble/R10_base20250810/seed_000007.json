@@ -1,0 +1,69 @@
+{
+  "generated_utc": "2026-08-11T09:40:01.240284+00:00",
+  "state": "superposition",
+  "J": 2,
+  "cutoff": 6,
+  "n_patterns": 36,
+  "n_workers": 8,
+  "interferometer": "haar",
+  "seed": 20250817,
+  "haar_base_seed": 20250810,
+  "engine": "low_rank_loop_hafnian_per_pattern_parallel",
+  "B_shape": [
+    4,
+    4
+  ],
+  "takagi_rank": 4,
+  "timing_s": {
+    "build_B_mu_takagi": 0.0036295512691140175,
+    "parallel_hafnians": 60.361097081098706,
+    "total": 60.36482307314873
+  },
+  "total_raw_before_renorm": 1.5999996956297264e-15,
+  "sum_P": 0.9999999999999976,
+  "probabilities": [
+    [
+      [
+        0,
+        1
+      ],
+      0.31062824373306547
+    ],
+    [
+      [
+        0,
+        0
+      ],
+      0.25000000928591337
+    ],
+    [
+      [
+        1,
+        0
+      ],
+      0.18937175626696018
+    ],
+    [
+      [
+        2,
+        0
+      ],
+      0.08554205537092267
+    ],
+    [
+      [
+        0,
+        2
+      ],
+      0.0855420328360951
+    ],
+    [
+      [
+        1,
+        1
+      ],
+      0.07891590250704075
+    ]
+  ],
+  "zero_save_tol": 1e-10
+}
