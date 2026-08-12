@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 from pathlib import Path
 from typing import Any
 
@@ -136,5 +137,39 @@ def batch_realization_range(
     return range(start, end)
 
 
+def _manifest_usable(path: Path) -> bool:
+    """True if an existing manifest.json looks readable and complete enough to keep."""
+    if not path.is_file():
+        return False
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return False
+    return isinstance(data, dict) and "n_ensemble" in data
+
+
 def write_manifest(ens_dir: Path, payload: dict[str, Any]) -> None:
-    write_json_atomic(ens_dir / "manifest.json", payload)
+    """
+    Write ensemble manifest metadata.
+
+    Safe under concurrent PBS array tasks: each task used to call this at startup,
+    but a shared ``manifest.json.tmp`` caused FileNotFoundError when one task's
+    ``replace()`` consumed another task's temp file. Restart/skip logic uses
+    per-seed JSON files only, so an existing usable manifest is left unchanged.
+    """
+    path = ens_dir / "manifest.json"
+    if _manifest_usable(path):
+        return
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(f"{path.stem}.{os.getpid()}.tmp")
+    try:
+        tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+        tmp.replace(path)
+    except FileNotFoundError:
+        # Another array task may have published manifest.json between our check
+        # and replace(). Only treat as success if the on-disk manifest is usable.
+        if not _manifest_usable(path):
+            raise
+    finally:
+        tmp.unlink(missing_ok=True)
