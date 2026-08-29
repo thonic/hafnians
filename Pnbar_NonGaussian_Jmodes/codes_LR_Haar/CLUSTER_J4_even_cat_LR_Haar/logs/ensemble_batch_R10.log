@@ -1,0 +1,363 @@
+HOST=eluo1-5.hw.elixir-czech.cz  JOB=22822292.pbs-m1.metacentrum.cz  ARRAY=0  CPUS=8  ENGINE=haar_ensemble
+Ensemble batch J=4: n=10 geometries=('A', 'B', 'C') batch_index=0
+[000000/A] RUN  seed=20250810 -> seed_000000_geomA.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250810
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.154 s
+  hafnian wall time = 52.721 s  sum_P=1.000000  sparse=241/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000000_geomA.json
+[000000/B] RUN  seed=20250810 -> seed_000000_geomB.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250810
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 44.555 s  sum_P=1.000000  sparse=249/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000000_geomB.json
+[000000/C] RUN  seed=20250810 -> seed_000000_geomC.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250810
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 44.768 s  sum_P=1.000000  sparse=244/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000000_geomC.json
+[000001/A] RUN  seed=20250811 -> seed_000001_geomA.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250811
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.003 s
+  hafnian wall time = 45.926 s  sum_P=1.000000  sparse=247/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000001_geomA.json
+[000001/B] RUN  seed=20250811 -> seed_000001_geomB.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250811
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 43.965 s  sum_P=1.000000  sparse=248/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000001_geomB.json
+[000001/C] RUN  seed=20250811 -> seed_000001_geomC.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250811
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 44.900 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000001_geomC.json
+[000002/A] RUN  seed=20250812 -> seed_000002_geomA.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250812
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 43.558 s  sum_P=1.000000  sparse=247/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000002_geomA.json
+[000002/B] RUN  seed=20250812 -> seed_000002_geomB.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250812
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.003 s
+  hafnian wall time = 44.498 s  sum_P=1.000000  sparse=250/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000002_geomB.json
+[000002/C] RUN  seed=20250812 -> seed_000002_geomC.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250812
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 43.086 s  sum_P=1.000000  sparse=246/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000002_geomC.json
+[000003/A] RUN  seed=20250813 -> seed_000003_geomA.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250813
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 48.481 s  sum_P=1.000000  sparse=241/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000003_geomA.json
+[000003/B] RUN  seed=20250813 -> seed_000003_geomB.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250813
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 44.562 s  sum_P=1.000000  sparse=230/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000003_geomB.json
+[000003/C] RUN  seed=20250813 -> seed_000003_geomC.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250813
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 45.376 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000003_geomC.json
+[000004/A] RUN  seed=20250814 -> seed_000004_geomA.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250814
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 42.628 s  sum_P=1.000000  sparse=244/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000004_geomA.json
+[000004/B] RUN  seed=20250814 -> seed_000004_geomB.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250814
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 45.864 s  sum_P=1.000000  sparse=247/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000004_geomB.json
+[000004/C] RUN  seed=20250814 -> seed_000004_geomC.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250814
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 43.556 s  sum_P=1.000000  sparse=250/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000004_geomC.json
+[000005/A] RUN  seed=20250815 -> seed_000005_geomA.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250815
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.003 s
+  hafnian wall time = 46.078 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000005_geomA.json
+[000005/B] RUN  seed=20250815 -> seed_000005_geomB.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250815
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 44.420 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000005_geomB.json
+[000005/C] RUN  seed=20250815 -> seed_000005_geomC.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250815
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 44.181 s  sum_P=1.000000  sparse=244/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000005_geomC.json
+[000006/A] RUN  seed=20250816 -> seed_000006_geomA.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250816
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 43.026 s  sum_P=1.000000  sparse=231/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000006_geomA.json
+[000006/B] RUN  seed=20250816 -> seed_000006_geomB.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250816
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 44.215 s  sum_P=1.000000  sparse=247/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000006_geomB.json
+[000006/C] RUN  seed=20250816 -> seed_000006_geomC.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250816
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.003 s
+  hafnian wall time = 43.222 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000006_geomC.json
+[000007/A] RUN  seed=20250817 -> seed_000007_geomA.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250817
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 46.592 s  sum_P=1.000000  sparse=230/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000007_geomA.json
+[000007/B] RUN  seed=20250817 -> seed_000007_geomB.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250817
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 43.164 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000007_geomB.json
+[000007/C] RUN  seed=20250817 -> seed_000007_geomC.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250817
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.003 s
+  hafnian wall time = 44.810 s  sum_P=1.000000  sparse=242/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000007_geomC.json
+[000008/A] RUN  seed=20250818 -> seed_000008_geomA.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250818
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 43.256 s  sum_P=1.000000  sparse=239/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000008_geomA.json
+[000008/B] RUN  seed=20250818 -> seed_000008_geomB.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250818
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 45.191 s  sum_P=1.000000  sparse=212/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000008_geomB.json
+[000008/C] RUN  seed=20250818 -> seed_000008_geomC.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250818
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 43.644 s  sum_P=1.000000  sparse=248/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000008_geomC.json
+[000009/A] RUN  seed=20250819 -> seed_000009_geomA.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250819
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 45.536 s  sum_P=1.000000  sparse=250/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000009_geomA.json
+[000009/B] RUN  seed=20250819 -> seed_000009_geomB.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250819
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 45.586 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000009_geomB.json
+[000009/C] RUN  seed=20250819 -> seed_000009_geomC.json
+============================================================
+Cluster LR: J=4  state=even_cat  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : low_rank_loop_hafnian_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250819
+
+  B shape = (12, 12), Takagi rank = 4, build = 0.004 s
+  hafnian wall time = 45.335 s  sum_P=1.000000  sparse=215/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J4_even_cat_LR_Haar/output/ensemble/R10_base20250810/seed_000009_geomC.json
+Batch finished: ran=30 skipped=0

@@ -1,0 +1,393 @@
+HOST=elmu1-3.hw.elixir-czech.cz  JOB=22825203.pbs-m1.metacentrum.cz  ARRAY=0  CPUS=8  ENGINE=haar_ensemble
+Ensemble batch J=4: n=10 geometries=('A', 'B', 'C') batch_index=0
+[000000/A] RUN  seed=20250810 -> seed_000000_geomA.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250810
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.092 s
+  hafnian wall time = 7.782 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000000_geomA.json
+[000000/B] RUN  seed=20250810 -> seed_000000_geomB.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250810
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.003 s
+  hafnian wall time = 6.672 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000000_geomB.json
+[000000/C] RUN  seed=20250810 -> seed_000000_geomC.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250810
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.743 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000000_geomC.json
+[000001/A] RUN  seed=20250811 -> seed_000001_geomA.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250811
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.003 s
+  hafnian wall time = 6.814 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000001_geomA.json
+[000001/B] RUN  seed=20250811 -> seed_000001_geomB.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250811
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.829 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000001_geomB.json
+[000001/C] RUN  seed=20250811 -> seed_000001_geomC.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250811
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.004 s
+  hafnian wall time = 6.287 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000001_geomC.json
+[000002/A] RUN  seed=20250812 -> seed_000002_geomA.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250812
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.410 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000002_geomA.json
+[000002/B] RUN  seed=20250812 -> seed_000002_geomB.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250812
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.764 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000002_geomB.json
+[000002/C] RUN  seed=20250812 -> seed_000002_geomC.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250812
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.004 s
+  hafnian wall time = 6.920 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000002_geomC.json
+[000003/A] RUN  seed=20250813 -> seed_000003_geomA.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250813
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.993 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000003_geomA.json
+[000003/B] RUN  seed=20250813 -> seed_000003_geomB.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250813
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.598 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000003_geomB.json
+[000003/C] RUN  seed=20250813 -> seed_000003_geomC.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250813
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.704 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000003_geomC.json
+[000004/A] RUN  seed=20250814 -> seed_000004_geomA.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250814
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.673 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000004_geomA.json
+[000004/B] RUN  seed=20250814 -> seed_000004_geomB.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250814
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.004 s
+  hafnian wall time = 6.979 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000004_geomB.json
+[000004/C] RUN  seed=20250814 -> seed_000004_geomC.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250814
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.416 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000004_geomC.json
+[000005/A] RUN  seed=20250815 -> seed_000005_geomA.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250815
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.353 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000005_geomA.json
+[000005/B] RUN  seed=20250815 -> seed_000005_geomB.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250815
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.004 s
+  hafnian wall time = 6.698 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000005_geomB.json
+[000005/C] RUN  seed=20250815 -> seed_000005_geomC.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250815
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.810 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000005_geomC.json
+[000006/A] RUN  seed=20250816 -> seed_000006_geomA.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250816
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.930 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000006_geomA.json
+[000006/B] RUN  seed=20250816 -> seed_000006_geomB.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250816
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.848 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000006_geomB.json
+[000006/C] RUN  seed=20250816 -> seed_000006_geomC.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250816
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.786 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000006_geomC.json
+[000007/A] RUN  seed=20250817 -> seed_000007_geomA.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250817
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 7.136 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000007_geomA.json
+[000007/B] RUN  seed=20250817 -> seed_000007_geomB.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250817
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.003 s
+  hafnian wall time = 6.771 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000007_geomB.json
+[000007/C] RUN  seed=20250817 -> seed_000007_geomC.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250817
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.391 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000007_geomC.json
+[000008/A] RUN  seed=20250818 -> seed_000008_geomA.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250818
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.343 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000008_geomA.json
+[000008/B] RUN  seed=20250818 -> seed_000008_geomB.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250818
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.897 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000008_geomB.json
+[000008/C] RUN  seed=20250818 -> seed_000008_geomC.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250818
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.988 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000008_geomC.json
+[000009/A] RUN  seed=20250819 -> seed_000009_geomA.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=A  (s, s, vac, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250819
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.002 s
+  hafnian wall time = 6.825 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000009_geomA.json
+[000009/B] RUN  seed=20250819 -> seed_000009_geomB.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=B  (s, vac, s, vac)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250819
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.004 s
+  hafnian wall time = 6.852 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000009_geomB.json
+[000009/C] RUN  seed=20250819 -> seed_000009_geomC.json
+============================================================
+Cluster LR: J=4  state=gaussian_squeezed  geometry=C  (s, vac, vac, s)
+============================================================
+  engine        : ordinary_low_rank_hafnian_AeqGGT_per_pattern_parallel
+  cutoff        : 6  →  1296 configurations
+  workers       : 8
+  Haar seed     : 20250819
+  squeeze_r     : 0.881374  (sinh(r)=1)
+
+  B shape = (12, 12), Takagi rank = 4, ||μ|| = 7.737e-04 (unused), build = 0.004 s
+  hafnian wall time = 7.140 s  sum_P=1.000000  sparse=251/1296
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/Standard_Gaussian/CLUSTER_J4_Gaussian_squeezed_Haar/output/ensemble/R10_base20250810/seed_000009_geomC.json
+Batch finished: ran=30 skipped=0

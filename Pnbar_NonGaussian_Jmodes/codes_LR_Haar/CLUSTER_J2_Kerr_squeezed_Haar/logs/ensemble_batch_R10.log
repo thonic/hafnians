@@ -1,0 +1,203 @@
+HOST=elmo1-1.hw.elixir-czech.cz  JOB=22810684.pbs-m1.metacentrum.cz  ARRAY=0  CPUS=8  ENGINE=haar_ensemble
+Ensemble batch: realizations [0, 1, 2]...9 (batch_index=0, n=10)
+[000000] RUN  seed=20250810 -> seed_000000.json
+============================================================
+Cluster LR: J=2  state=kerr_squeezed
+============================================================
+  cutoff    : 6  →  36 configurations
+  Interferometer : haar
+  Haar seed : 20250810
+  workers   : 8
+  engine    : low_rank_loop_hafnian_per_pattern_parallel
+
+Building (B, μ, scale) + Takagi G once ...
+  B shape = (10, 10), Takagi rank = 4, build time = 0.332 s
+Evaluating 36 patterns with 8 workers ...
+  hafnian wall time = 60.967 s
+  Σ raw             = 3.015256e-57
+  sparse entries    = 17 / 36  (tol=1e-10)
+  sum_P (sparse)    = 0.9999999999999848
+  total wall time   = 61.299 s
+
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J2_Kerr_squeezed_Haar/output/ensemble/R10_base20250810/seed_000000.json
+[000001] RUN  seed=20250811 -> seed_000001.json
+============================================================
+Cluster LR: J=2  state=kerr_squeezed
+============================================================
+  cutoff    : 6  →  36 configurations
+  Interferometer : haar
+  Haar seed : 20250811
+  workers   : 8
+  engine    : low_rank_loop_hafnian_per_pattern_parallel
+
+Building (B, μ, scale) + Takagi G once ...
+  B shape = (10, 10), Takagi rank = 4, build time = 0.006 s
+Evaluating 36 patterns with 8 workers ...
+  hafnian wall time = 46.184 s
+  Σ raw             = 2.977057e-57
+  sparse entries    = 17 / 36  (tol=1e-10)
+  sum_P (sparse)    = 0.9999999999999231
+  total wall time   = 46.190 s
+
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J2_Kerr_squeezed_Haar/output/ensemble/R10_base20250810/seed_000001.json
+[000002] RUN  seed=20250812 -> seed_000002.json
+============================================================
+Cluster LR: J=2  state=kerr_squeezed
+============================================================
+  cutoff    : 6  →  36 configurations
+  Interferometer : haar
+  Haar seed : 20250812
+  workers   : 8
+  engine    : low_rank_loop_hafnian_per_pattern_parallel
+
+Building (B, μ, scale) + Takagi G once ...
+  B shape = (10, 10), Takagi rank = 4, build time = 0.006 s
+Evaluating 36 patterns with 8 workers ...
+  hafnian wall time = 56.730 s
+  Σ raw             = 2.995250e-57
+  sparse entries    = 17 / 36  (tol=1e-10)
+  sum_P (sparse)    = 0.9999999999999782
+  total wall time   = 56.736 s
+
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J2_Kerr_squeezed_Haar/output/ensemble/R10_base20250810/seed_000002.json
+[000003] RUN  seed=20250813 -> seed_000003.json
+============================================================
+Cluster LR: J=2  state=kerr_squeezed
+============================================================
+  cutoff    : 6  →  36 configurations
+  Interferometer : haar
+  Haar seed : 20250813
+  workers   : 8
+  engine    : low_rank_loop_hafnian_per_pattern_parallel
+
+Building (B, μ, scale) + Takagi G once ...
+  B shape = (10, 10), Takagi rank = 4, build time = 0.006 s
+Evaluating 36 patterns with 8 workers ...
+  hafnian wall time = 47.167 s
+  Σ raw             = 3.008679e-57
+  sparse entries    = 17 / 36  (tol=1e-10)
+  sum_P (sparse)    = 0.9999999999999920
+  total wall time   = 47.172 s
+
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J2_Kerr_squeezed_Haar/output/ensemble/R10_base20250810/seed_000003.json
+[000004] RUN  seed=20250814 -> seed_000004.json
+============================================================
+Cluster LR: J=2  state=kerr_squeezed
+============================================================
+  cutoff    : 6  →  36 configurations
+  Interferometer : haar
+  Haar seed : 20250814
+  workers   : 8
+  engine    : low_rank_loop_hafnian_per_pattern_parallel
+
+Building (B, μ, scale) + Takagi G once ...
+  B shape = (10, 10), Takagi rank = 4, build time = 0.006 s
+Evaluating 36 patterns with 8 workers ...
+  hafnian wall time = 56.005 s
+  Σ raw             = 3.029055e-57
+  sparse entries    = 17 / 36  (tol=1e-10)
+  sum_P (sparse)    = 0.9999999999999829
+  total wall time   = 56.012 s
+
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J2_Kerr_squeezed_Haar/output/ensemble/R10_base20250810/seed_000004.json
+[000005] RUN  seed=20250815 -> seed_000005.json
+============================================================
+Cluster LR: J=2  state=kerr_squeezed
+============================================================
+  cutoff    : 6  →  36 configurations
+  Interferometer : haar
+  Haar seed : 20250815
+  workers   : 8
+  engine    : low_rank_loop_hafnian_per_pattern_parallel
+
+Building (B, μ, scale) + Takagi G once ...
+  B shape = (10, 10), Takagi rank = 4, build time = 0.006 s
+Evaluating 36 patterns with 8 workers ...
+  hafnian wall time = 53.024 s
+  Σ raw             = 2.974862e-57
+  sparse entries    = 17 / 36  (tol=1e-10)
+  sum_P (sparse)    = 0.9999999999999216
+  total wall time   = 53.029 s
+
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J2_Kerr_squeezed_Haar/output/ensemble/R10_base20250810/seed_000005.json
+[000006] RUN  seed=20250816 -> seed_000006.json
+============================================================
+Cluster LR: J=2  state=kerr_squeezed
+============================================================
+  cutoff    : 6  →  36 configurations
+  Interferometer : haar
+  Haar seed : 20250816
+  workers   : 8
+  engine    : low_rank_loop_hafnian_per_pattern_parallel
+
+Building (B, μ, scale) + Takagi G once ...
+  B shape = (10, 10), Takagi rank = 4, build time = 0.006 s
+Evaluating 36 patterns with 8 workers ...
+  hafnian wall time = 56.428 s
+  Σ raw             = 3.004721e-57
+  sparse entries    = 17 / 36  (tol=1e-10)
+  sum_P (sparse)    = 0.9999999999999167
+  total wall time   = 56.434 s
+
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J2_Kerr_squeezed_Haar/output/ensemble/R10_base20250810/seed_000006.json
+[000007] RUN  seed=20250817 -> seed_000007.json
+============================================================
+Cluster LR: J=2  state=kerr_squeezed
+============================================================
+  cutoff    : 6  →  36 configurations
+  Interferometer : haar
+  Haar seed : 20250817
+  workers   : 8
+  engine    : low_rank_loop_hafnian_per_pattern_parallel
+
+Building (B, μ, scale) + Takagi G once ...
+  B shape = (10, 10), Takagi rank = 4, build time = 0.006 s
+Evaluating 36 patterns with 8 workers ...
+  hafnian wall time = 45.393 s
+  Σ raw             = 3.006624e-57
+  sparse entries    = 17 / 36  (tol=1e-10)
+  sum_P (sparse)    = 0.9999999999999317
+  total wall time   = 45.400 s
+
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J2_Kerr_squeezed_Haar/output/ensemble/R10_base20250810/seed_000007.json
+[000008] RUN  seed=20250818 -> seed_000008.json
+============================================================
+Cluster LR: J=2  state=kerr_squeezed
+============================================================
+  cutoff    : 6  →  36 configurations
+  Interferometer : haar
+  Haar seed : 20250818
+  workers   : 8
+  engine    : low_rank_loop_hafnian_per_pattern_parallel
+
+Building (B, μ, scale) + Takagi G once ...
+  B shape = (10, 10), Takagi rank = 4, build time = 0.006 s
+Evaluating 36 patterns with 8 workers ...
+  hafnian wall time = 54.164 s
+  Σ raw             = 2.962900e-57
+  sparse entries    = 17 / 36  (tol=1e-10)
+  sum_P (sparse)    = 0.9999999999999659
+  total wall time   = 54.170 s
+
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J2_Kerr_squeezed_Haar/output/ensemble/R10_base20250810/seed_000008.json
+[000009] RUN  seed=20250819 -> seed_000009.json
+============================================================
+Cluster LR: J=2  state=kerr_squeezed
+============================================================
+  cutoff    : 6  →  36 configurations
+  Interferometer : haar
+  Haar seed : 20250819
+  workers   : 8
+  engine    : low_rank_loop_hafnian_per_pattern_parallel
+
+Building (B, μ, scale) + Takagi G once ...
+  B shape = (10, 10), Takagi rank = 4, build time = 0.006 s
+Evaluating 36 patterns with 8 workers ...
+  hafnian wall time = 45.060 s
+  Σ raw             = 3.002620e-57
+  sparse entries    = 17 / 36  (tol=1e-10)
+  sum_P (sparse)    = 0.9999999999999738
+  total wall time   = 45.066 s
+
+Wrote /auto/brno12-cerit/nfs4/home/deeptisharma/deepti/codes_LR_Haar/CLUSTER_J2_Kerr_squeezed_Haar/output/ensemble/R10_base20250810/seed_000009.json
+Batch finished: done=10 ran=10 skipped=0
